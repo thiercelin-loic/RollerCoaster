@@ -1,0 +1,22 @@
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+div.diagram,
+div.tools {
+    position: absolute;
+}
+
+div.diagram {
+    width: 600px;
+    height: 315px;
+    background: #141416;
+    overflow: hidden;
+    border-bottom: orange solid 1px;
+}

@@ -1,0 +1,17 @@
+body {
+    background: #3D3D3D;
+}
+
+@font-face {
+    font-family: Assistant-Light;
+    src: url("./fonts/Assistant-Light.ttf");
+}
+
+@font-face {
+    font-family: Assistant-Medium;
+    src: url("./fonts/Assistant-Medium.ttf");
+}
+
+p {
+    font-family: "Assistant-Light";
+}

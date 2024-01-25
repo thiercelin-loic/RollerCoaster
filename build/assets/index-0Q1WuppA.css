@@ -1,0 +1,106 @@
+div.bars {
+    width: 550px;
+    height: 280px;
+    border-bottom: dashed grey 1px;
+    border-left: dashed grey 1px;
+    background: #141416;
+    position: absolute
+}
+
+div.bar {
+    width: 1px;
+    background: #fff;
+    bottom: 0%;
+    position: absolute
+}
+
+p.bar {
+    padding-left: 1%;
+    bottom: -5%;
+    width: 100%;
+    overflow: hidden;
+    position: absolute;
+    border-top: #ffffff42 dashed 1px;
+    color: gray
+}
+
+p.bar#key {
+    background-color: #141416;
+    left: -1%;
+    border: none;
+    padding: 1%;
+    bottom: -17.5%;
+    overflow: hidden
+}
+
+div.tools {
+    width: 7%;
+    height: 100%;
+    padding-right: 2.5%;
+    margin-left: 92%;
+    background: #131315;
+    border-left: dashed gray 1px
+}
+
+p.enlarge,
+p.reduce {
+    font-size: xx-large
+}
+
+p.enlarge,
+p.reduce,
+p.values {
+    margin: 0%;
+    color: gray;
+    text-align: center;
+    width: 110%;
+    -webkit-user-select: none;
+    user-select: none
+}
+
+p.enlarge:hover,
+p.reduce:hover,
+p.values:hover {
+    color: #fff;
+    cursor: pointer
+}
+
+p.values {
+    padding: 25% 0%
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0
+    }
+
+    to {
+        opacity: 1
+    }
+}
+
+div.diagram,
+div.tools {
+    position: absolute
+}
+
+div.diagram {
+    width: 600px;
+    height: 315px;
+    background: #141416;
+    overflow: hidden;
+    border-bottom: orange solid 1px
+}
+
+body {
+    background: #3d3d3d
+}
+
+@font-face {
+    font-family: "Assistant-Light";
+    src: url("./Assistant-Light-y5p5-ARa.ttf")
+}
+
+p {
+    font-family: "Assistant-Light"
+}

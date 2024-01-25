@@ -1,0 +1,34 @@
+div.bars {
+    width: 550px;
+    height: 280px;
+    border-bottom: dashed grey 1px;
+    border-left: dashed grey 1px;
+    background: #141416;
+    position: absolute;
+}
+
+div.bar {
+    width: 1px;
+    background: white;
+    bottom: 0%;
+    position: absolute;
+}
+
+p.bar {
+    padding-left: 1%;
+    bottom: -5%;
+    width: 100%;
+    overflow: hidden;
+    position: absolute;
+    border-top: #ffffff42 dashed 1px;
+    color: grey;
+}
+
+p.bar#key {
+    background-color: #141416;
+    left: -1%;
+    border: none;
+    padding: 1%;
+    bottom: -17.5%;
+    overflow: hidden;
+}
