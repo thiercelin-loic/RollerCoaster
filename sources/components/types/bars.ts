@@ -1,7 +1,9 @@
 interface bars {
     positions: { x: number, y: number }[],
     enlargement: number,
-    display: string
+    frequency: boolean,
+    sum: number,
+    format: string
 }
 
 export default bars

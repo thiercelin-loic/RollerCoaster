@@ -1,0 +1,26 @@
+div.frequency {
+    width: 17.5%;
+    height: 100%;
+    top: 0%;
+    margin-left: 3.5%;
+    position: fixed;
+    border-left: gray dashed 1px;
+}
+
+p.frequency {
+    padding: 0px 20px;
+}
+
+p.frequency#title {
+    padding-top: 0%;
+    padding-left: 10%;
+}
+
+p.frequency:hover {
+    color: white;
+    cursor: pointer;
+}
+
+input.frequency {
+    margin: 0% 5% 0% 10%;
+}

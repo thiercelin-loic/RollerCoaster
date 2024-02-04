@@ -14,9 +14,8 @@ div.tools {
 }
 
 div.diagram {
-    width: 600px;
-    height: 315px;
-    background: #141416;
+    width: 100%;
+    height: 99%;
     overflow: hidden;
     border-bottom: orange solid 1px;
 }

@@ -1,52 +1,50 @@
 import React from "react"
+
+import Frequency from "./libraries/Bars/Frequency"
+import X from "./libraries/Bars/X"
+import Y from "./libraries/Bars/Y"
+import Key from "./libraries/Bars/Key"
+
+import toFrequency from "./utilities/toFrequency"
+
 import bars from "./types/bars"
+
 import "./styles/Bars.css"
 
 const Bars = ({
     positions,
     enlargement,
-    display
+    frequency,
+    sum,
+    format
 }: bars) => <div className="bars">{
     positions.map(position => {
-        const className = "bar"
-        const key = position.y
-        const height = `${position.y}px`
         const marginLeft = `${position.x * enlargement}px`
 
-        const y = { marginLeft, height }
-        const value = { height, display }
-        const tag = { marginLeft, display }
-        const styles = { y, value, tag }
+        const height = `${toFrequency(
+            position.y,
+            sum
+        )}%`
 
-        const X = () => <div className={className} />
+        return <div key={position.y}>
+            <Y
+                marginLeft={marginLeft}
+                height={height}
 
-        const Y = () => <div
-            className={className}
-            style={styles.y}
-        />
-
-        const Value = () => <p
-            className={className}
-            style={styles.value}
-        >
-            {position.y}
-        </p>
-
-        const Key = () => <p
-            className={className}
-            style={styles.tag}
-            id="key"
-        >
-            {position.x}
-        </p>
-
-        return <div key={key}>
-            <Y />
-            <Value />
+            />
+            <Frequency
+                format={format}
+                height={height}
+                position={position}
+                frequency={frequency}
+            />
             <X />
-            <Key />
+            <Key
+                marginLeft={marginLeft}
+                position={position}
+            />
         </div>
     })
-}</div>
+}</div >
 
 export default Bars

@@ -1,6 +1,13 @@
-body {
-    background: #3D3D3D;
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
+
 
 @font-face {
     font-family: Assistant-Light;
@@ -12,6 +19,34 @@ body {
     src: url("./fonts/Assistant-Medium.ttf");
 }
 
+body {
+    background: black;
+    margin: 0%;
+    padding: 0%;
+}
+
+p,
+input,
+select {
+    font-family: "Assistant-Light";
+}
+
 p {
     font-family: "Assistant-Light";
+    color: white;
+}
+
+input,
+select {
+    background: #212125;
+    border: solid grey 1px;
+    color: white;
+    padding: 1%;
+    border-radius: 5px;
+    width: 35%;
+    margin-right: 2%;
+}
+
+option.label {
+    color: gray;
 }
