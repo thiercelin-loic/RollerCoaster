@@ -8,14 +8,16 @@
     }
 }
 
-div.diagram,
+div.tab,
 div.tools {
     position: absolute;
 }
 
-div.diagram {
+div.tab {
     width: 100%;
     height: 99%;
     overflow: hidden;
     border-bottom: orange solid 1px;
+    background: #1b1816;
+
 }

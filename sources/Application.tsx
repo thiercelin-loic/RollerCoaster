@@ -1,10 +1,35 @@
-import React from "react"
-import Diagram from "./components/Diagram"
-import demo from "./configurations/demo.json"
+import React, { useState } from "react"
+import Tab from "./libraries/Tab"
+import Tool from "./libraries/Tool"
 import "./index.css"
 
-const Application = () => <div>
-    <Diagram values={demo}/>
-</div>
+const Application = () => {
+    const [width, setWidth] = useState("100%")
+    const [height, setHeight] = useState("99%")
+    const [marginTop, setMarginTop] = useState("0%")
+
+    const focus = () => {
+        width == "100%"
+            ? setWidth("75%")
+            : setWidth("100%")
+
+        height == "99%"
+            ? setHeight("75%")
+            : setHeight("99%")
+
+        marginTop == "0%"
+            ? setMarginTop("5%")
+            : setMarginTop("0%")
+    }
+
+    return <div>
+        <Tab
+            width={width}
+            height={height}
+            marginTop={marginTop}
+        />
+        <Tool focus={focus} />
+    </div>
+}
 
 export default Application

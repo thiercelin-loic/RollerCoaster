@@ -1,10 +1,10 @@
 import React from "react"
 
-const Key = ({ marginLeft, position }) =>
+const Key = ({ marginLeft, axis }) =>
     <p className="bar" id="key" style={{
         marginLeft
     }}>
-        {position.x}
+        {axis.x}
     </p>
 
 export default Key
