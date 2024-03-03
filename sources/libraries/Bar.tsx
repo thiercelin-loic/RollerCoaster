@@ -1,7 +1,7 @@
 import React from "react"
-import toFrequency from "./utilities/toFrequency"
-import toSum from "./utilities/toSum"
-import toPercentUnit from "./utilities/toPercentUnit"
+import toFrequency from "./maths/toFrequency"
+import toSum from "./maths/toSum"
+import toPercentUnit from "./maths/toPercentUnit"
 import useWidth from "./hooks/useWidth"
 
 const Bar = ({ axes }) => {
