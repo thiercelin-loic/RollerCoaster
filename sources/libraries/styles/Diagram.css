@@ -1,0 +1,27 @@
+div.axis {
+    border: gray solid 1px;
+    position: absolute;
+}
+
+div.axis#y {
+    left: 50%;
+    height: 100%;
+}
+
+div.axis#x {
+    top: 50%;
+    width: 100%;
+}
+
+div.bar {
+    width: 1px;
+    bottom: 50%;
+    position: absolute;
+    background: white;
+}
+
+p#y {
+    position: fixed;
+    bottom: 45%;
+    margin-left: -0.35%;
+}

@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import Tab from "./libraries/Tab"
+import Diagram from "./libraries/Diagram"
 import Tool from "./libraries/Tool"
 import "./index.css"
 
@@ -7,7 +7,8 @@ const Application = () => {
     const [width, setWidth] = useState("100%")
     const [height, setHeight] = useState("99%")
     const [marginTop, setMarginTop] = useState("0%")
-
+    const style = { width, height, marginTop }
+    
     const focus = () => {
         width == "100%"
             ? setWidth("75%")
@@ -23,11 +24,9 @@ const Application = () => {
     }
 
     return <div>
-        <Tab
-            width={width}
-            height={height}
-            marginTop={marginTop}
-        />
+        <div className="tab" style={style}>
+            <Diagram />
+        </div>
         <Tool focus={focus} />
     </div>
 }

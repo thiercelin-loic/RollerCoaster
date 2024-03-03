@@ -1,9 +1,9 @@
-const initial = 0
+const toSum
+    = (values: [{ x: number, y: number }]) => {
+        let sum = 0
 
-const toSum = (values: number[]) =>
-    values.reduce(
-        (previous, current) => previous + current,
-        initial
-    )
+        values.map(value => sum += value.y)
+        return sum
+    }
 
 export default toSum
