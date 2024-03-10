@@ -39,12 +39,12 @@ p {
 input,
 select {
     background: #212125;
-    border: solid grey 1px;
+    border: solid transparent 1px;
     color: white;
-    padding: 1%;
     border-radius: 5px;
-    width: 35%;
-    margin-right: 2%;
+    width: 95%;
+    text-align: center;
+    font-size: medium;
 }
 
 div.tab,

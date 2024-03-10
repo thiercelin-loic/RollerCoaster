@@ -1,4 +1,4 @@
-div.tool {
+div.tools {
     width: 3%;
     height: 100%;
     right: 0;
@@ -7,7 +7,7 @@ div.tool {
     position: absolute;
 }
 
-p.tool {
+p.tools {
     margin: 0%;
     width: 40px;
     height: 35px;
@@ -20,6 +20,6 @@ p.tool {
     cursor: pointer;
 }
 
-p.tool:hover {
+p.tools:hover {
     color: white;
 }

@@ -1,0 +1,29 @@
+table {
+    color: white;
+    font-family: "Assistant-Light";
+    text-align: center;
+    width: 90%;
+    margin-left: 10%;
+    top: 0%;
+    padding: 1%;
+    position: absolute;
+    background: #181819;
+}
+
+caption {
+    border-bottom: lightgray solid 1px;
+    padding: 2%;
+    background: #181819;
+}
+
+thead {
+    border-bottom: gray solid 1px;
+}
+
+tbody {
+    background: #212125;
+}
+
+input.title {
+    background: #181819;
+}

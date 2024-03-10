@@ -1,7 +1,9 @@
 import React from "react"
 import { useState } from "react"
 
-const Button = ({ width, setWidth, focus, value }) => {
+const Button = (
+    { tool, width, focus }
+) => {
     const [color, setColor]
         = useState("lightgrey")
 
@@ -11,26 +13,27 @@ const Button = ({ width, setWidth, focus, value }) => {
     const style
         = { color, borderColor }
 
-    const resize = () => {
+    const colorize = () => {
         if (width == "2.75%") {
-            setWidth("25%")
             setColor("orange")
             setBorderColor("orange")
         } else {
-            setWidth("2.75%")
             setColor("lightgrey")
             setBorderColor("#80808080")
         }
     }
 
     const onClick = () => {
+        colorize()
         focus()
-        resize()
     }
 
-    return <p className="tool" style={style} onClick={onClick}>{
-        value
-    }</p>
+    return <p
+        className="tools"
+        style={style}
+        onClick={onClick}>{
+            tool
+        }</p>
 }
 
 export default Button
