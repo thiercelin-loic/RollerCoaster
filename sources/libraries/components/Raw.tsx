@@ -1,23 +1,14 @@
-import React, { useState } from "react"
-import Input from "./Input"
+import React from "react"
 
 const Raw = ({ axe }) => {
-    const [x, setX] = useState(axe.x)
-    const [y, setY] = useState(axe.y)
-
-    addEventListener("keypress", (event) => {
-        if (event.key == "Enter")
-            console.log(x, y)
-    })
-
     return <tr>
-        <th scope="raw">
-            <Input value={x} setValue={setX} />
-        </th>
-        <th scope="raw">
-            <Input value={y} setValue={setY} />
-        </th>
-    </tr>
+        <th scope="raw">{
+            axe.x
+        }</th>
+        <th scope="raw">{
+            axe.y
+        }</th>
+    </tr >
 }
 
 export default Raw

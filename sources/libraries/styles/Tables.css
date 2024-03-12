@@ -1,12 +1,11 @@
 table {
+    top: 0%;
+    right: 0%;
+    padding: 1%;
+    position: absolute;
     color: white;
     font-family: "Assistant-Light";
     text-align: center;
-    width: 90%;
-    margin-left: 10%;
-    top: 0%;
-    padding: 1%;
-    position: absolute;
     background: #181819;
 }
 

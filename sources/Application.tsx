@@ -1,10 +1,13 @@
 import React, { useState } from "react"
 import Diagram from "./libraries/Diagram"
 import Tools from "./libraries/Tools"
-import useAxes from "./libraries/hooks/useAxes"
 import "./index.css"
+import Tables from "./libraries/Tables"
 
 const Application = () => {
+    const [axes, setAxes]
+        = useState([{ x: 0, y: 0 }])
+
     const [width, setWidth]
         = useState("100%")
 
@@ -14,40 +17,48 @@ const Application = () => {
     const [marginTop, setMarginTop]
         = useState("0%")
 
-    const axes
-        = useAxes([10, 20, 30, 40, 50, 60])
+    const [display, setDisplay]
+        = useState("none")
 
     const style
         = { width, height, marginTop }
 
-    const changeWidth
-        = () => width == "100%"
+    const changeWidth = () =>
+        width == "100%"
             ? setWidth("75%")
             : setWidth("100%")
 
-    const changeHeight
-        = () => height == "99%"
+    const changeHeight = () =>
+        height == "99%"
             ? setHeight("75%")
             : setHeight("99%")
 
-    const changeMarginTop
-        = () => marginTop == "0%"
+    const changeMarginTop = () =>
+        marginTop == "0%"
             ? setMarginTop("5%")
             : setMarginTop("0%")
+
+    const changeDisplay = () =>
+        display == "none"
+            ? setDisplay("table")
+            : setDisplay("none")
 
     const focus = () => {
         changeWidth()
         changeHeight()
         changeMarginTop()
+        changeDisplay()
     }
 
     return <div>
         <div className="tab" style={style}>
             <Diagram axes={axes} />
         </div>
-        <Tools
-            focus={focus}
+        <Tools focus={focus} />
+        <Tables
+            display={display}
             axes={axes}
+            setAxes={setAxes}
         />
     </div>
 }
