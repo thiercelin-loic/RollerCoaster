@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import Button from "./components/Button"
+import key from "./utilities/key"
 import "./styles/Tool.css"
 
 const tools = ["+"]
@@ -15,6 +16,7 @@ const Tools = ({ focus }) => {
 
     return <div className="tools" style={{ width }}>{
         tools.map(tool => <Button
+            key={key()}
             tool={tool}
             width={width}
             focus={() => {

@@ -4,6 +4,7 @@ import Raw from "./components/Raw"
 import event from "./types/event"
 import axe from "./types/axe"
 import "./styles/Tables.css"
+import key from "./utilities/key"
 
 const Tables = ({ display, axes, setAxes }) => {
     const [caption, setCaption]
@@ -55,7 +56,7 @@ const Tables = ({ display, axes, setAxes }) => {
         <Head />
         <tbody>{
             axes.map((axe: axe) =>
-                <Raw axe={axe} />
+                <Raw key={key()} axe={axe} />
             )
         }
             <th scope="raw">
