@@ -8,8 +8,8 @@ const Tables = ({ display, axes, setAxes }) => {
     const [caption, setCaption]
         = useState("Table A")
 
-    const [x, setX] = useState("")
-    const [y, setY] = useState("")
+    const [x, setX] = useState(0)
+    const [y, setY] = useState(0)
 
     const add = () => {
         const copy = [...axes]
@@ -18,8 +18,8 @@ const Tables = ({ display, axes, setAxes }) => {
         copy.push(push)
         setAxes(copy)
 
-        setX("")
-        setY("")
+        setX(x + 1)
+        setY(0)
     }
 
     addEventListener("keypress", (event) => {
