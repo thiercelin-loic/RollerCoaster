@@ -59,20 +59,22 @@ const Tables = ({ display, axes, setAxes }) => {
                 <Raw key={key()} axe={axe} />
             )
         }
-            <th scope="raw">
-                <input
-                    type="text"
-                    value={`${x}`}
-                    onChange={changeX}
-                />
-            </th>
-            <th scope="raw">
-                <input
-                    type="text"
-                    value={`${y}`}
-                    onChange={changeY}
-                />
-            </th>
+            <tr>
+                <td scope="raw">
+                    <input
+                        type="text"
+                        value={`${x}`}
+                        onChange={changeX}
+                    />
+                </td>
+                <td scope="raw">
+                    <input
+                        type="text"
+                        value={`${y}`}
+                        onChange={changeY}
+                    />
+                </td>
+            </tr>
         </tbody>
     </table>
 }
