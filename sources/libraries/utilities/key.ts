@@ -1,4 +1,5 @@
 const date = new Date()
+
 const key = () =>
     date.getMilliseconds()
 

@@ -1,17 +1,24 @@
 import React, { useState } from "react"
+
 import Head from "./components/Head"
 import Raw from "./components/Raw"
+
+import key from "./utilities/key"
+
 import event from "./types/event"
 import axe from "./types/axe"
+
 import "./styles/Tables.css"
-import key from "./utilities/key"
 
 const Tables = ({ display, axes, setAxes }) => {
     const [caption, setCaption]
         = useState("Table A")
 
-    const [x, setX] = useState(0)
-    const [y, setY] = useState(0)
+    const [x, setX]
+        = useState(0)
+
+    const [y, setY]
+        = useState(0)
 
     const changeCaption = (event: event) =>
         setCaption(event.target.value)
@@ -39,9 +46,12 @@ const Tables = ({ display, axes, setAxes }) => {
         setY(0)
     }
 
+    const Axes = () => axes.map((axe: axe) =>
+        <Raw key={key()} axe={axe} />
+    )
+
     addEventListener("keypress", (event) => {
-        if (event.key == "Enter")
-            add()
+        if (event.key == "Enter") add()
     })
 
     return <table style={{ display }}>
@@ -54,11 +64,8 @@ const Tables = ({ display, axes, setAxes }) => {
             />
         </caption>
         <Head />
-        <tbody>{
-            axes.map((axe: axe) =>
-                <Raw key={key()} axe={axe} />
-            )
-        }
+        <tbody>
+            <Axes />
             <tr>
                 <td scope="raw">
                     <input

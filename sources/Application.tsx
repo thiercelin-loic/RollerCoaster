@@ -1,8 +1,10 @@
 import React, { useState } from "react"
+
 import Diagram from "./libraries/Diagram"
 import Tools from "./libraries/Tools"
-import "./index.css"
 import Tables from "./libraries/Tables"
+
+import "./index.css"
 
 const Application = () => {
     const [axes, setAxes]

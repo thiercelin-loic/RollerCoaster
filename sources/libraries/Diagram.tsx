@@ -1,5 +1,7 @@
 import React from "react"
+
 import Bar from "./Bar"
+
 import "./styles/Diagram.css"
 
 const Diagram = ({axes}) => {

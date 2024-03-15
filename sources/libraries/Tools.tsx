@@ -1,6 +1,8 @@
 import React, { useState } from "react"
+
 import Button from "./components/Button"
 import key from "./utilities/key"
+
 import "./styles/Tool.css"
 
 const tools = ["+"]
