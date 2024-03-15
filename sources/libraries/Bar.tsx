@@ -3,6 +3,7 @@ import toFrequency from "./maths/toFrequency"
 import toPercentUnit from "./maths/toPercentUnit"
 import useWidth from "./hooks/useWidth"
 import toSum from "./maths/toSum"
+import key from "./utilities/key"
 
 const Bar = ({ axes }) => {
     const width = useWidth()
@@ -20,7 +21,7 @@ const Bar = ({ axes }) => {
             = { marginLeft, height }
 
         return <div
-            key={height}
+            key={key()}
             className="bar"
             style={style}
         >
