@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import Head from "./components/Head"
 import Raw from "./components/Raw"
+import event from "./types/event"
 import axe from "./types/axe"
 import "./styles/Tables.css"
 
@@ -10,6 +11,21 @@ const Tables = ({ display, axes, setAxes }) => {
 
     const [x, setX] = useState(0)
     const [y, setY] = useState(0)
+
+    const changeCaption = (event: event) =>
+        setCaption(event.target.value)
+
+    const changeX = (event: event) => {
+        const value = event.target.value
+        const integer = parseInt(value)
+        setX(integer)
+    }
+
+    const changeY = (event: event) => {
+        const value = event.target.value
+        const integer = parseInt(value)
+        setY(integer)
+    }
 
     const add = () => {
         const copy = [...axes]
@@ -33,9 +49,7 @@ const Tables = ({ display, axes, setAxes }) => {
                 className="title"
                 type="text"
                 value={caption}
-                onChange={(event) =>
-                    setCaption(event.target.value)
-                }
+                onChange={changeCaption}
             />
         </caption>
         <Head />
@@ -48,18 +62,14 @@ const Tables = ({ display, axes, setAxes }) => {
                 <input
                     type="text"
                     value={`${x}`}
-                    onChange={(event) =>
-                        setX(event.target.value)
-                    }
+                    onChange={changeX}
                 />
             </th>
             <th scope="raw">
                 <input
                     type="text"
                     value={`${y}`}
-                    onChange={(event) =>
-                        setY(event.target.value)
-                    }
+                    onChange={changeY}
                 />
             </th>
         </tbody>
