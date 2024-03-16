@@ -37,7 +37,8 @@ p {
 }
 
 input,
-select {
+select,
+button {
     background: #212125;
     border: solid transparent 1px;
     color: white;

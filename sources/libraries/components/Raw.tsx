@@ -1,13 +1,14 @@
 import React from "react"
 
-const Raw = ({ axe }) => {
+const Raw = ({ axe, remove }) => {
     return <tr>
-        <th scope="raw">{
-            axe.x
-        }</th>
-        <th scope="raw">{
-            axe.y
-        }</th>
+        <th scope="raw">{axe.y}</th>
+        <button
+            className="raw"
+            onClick={() => remove(axe.y)}
+        >
+            remove
+        </button>
     </tr >
 }
 
