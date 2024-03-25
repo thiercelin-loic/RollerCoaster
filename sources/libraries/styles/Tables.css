@@ -2,20 +2,36 @@ table {
     top: 0%;
     right: 0%;
     padding: 1%;
+    width: 25%;
     position: fixed;
-    color: white;
     font-family: "Assistant-Light";
     text-align: center;
     background: #181819;
 }
 
-tbody {
-    background: #212125;
+caption {
+    color: white;
+    padding: 2%;
+    border-bottom: gray solid 1px;
 }
 
-button.raw {
+button.remove,
+button.insert,
+input.value,
+input.insert {
+    width: 90%;
+    height: 30px;
+    font-size: 85%;
+}
+
+button.remove {
+    width: 100%;
     color: red;
-    width: 75px;
-    padding: 1%;
-    font-size: small;
+    border: darkred dashed 1px;
+}
+
+button.insert {
+    width: 100%;
+    color: lightgray;
+    background: #202042;
 }

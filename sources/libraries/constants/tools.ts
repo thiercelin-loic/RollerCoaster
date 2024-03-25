@@ -1,0 +1,1 @@
+export const WIDTH = "2.75%"

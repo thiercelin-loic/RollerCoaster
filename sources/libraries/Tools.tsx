@@ -1,20 +1,23 @@
 import React, { useState } from "react"
 
 import Button from "./components/Button"
+
 import key from "./utilities/key"
+
+import { WIDTH } from "./constants/tools"
 
 import "./styles/Tool.css"
 
-const tools = ["+"]
+const tools = ["ƒ"]
 
 const Tools = ({ focus }) => {
     const [width, setWidth]
-        = useState("2.75%")
+        = useState(WIDTH)
 
     const resize = () =>
-        width == "2.75%"
+        width == WIDTH
             ? setWidth("27%")
-            : setWidth("2.75%")
+            : setWidth(WIDTH)
 
     return <div className="tools" style={{ width }}>{
         tools.map(tool => <Button

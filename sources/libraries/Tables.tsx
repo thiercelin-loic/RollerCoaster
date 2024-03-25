@@ -1,72 +1,59 @@
 import React, { useState } from "react"
+import capitalize from "capitalize"
 
-import Raw from "./components/Raw"
+import Field from "./Field"
+
+import insert from "./handlers/insert"
+import progress from "./handlers/progress"
+import change from "./handlers/change"
 
 import key from "./utilities/key"
 
-import event from "./types/event"
-import axe from "./types/axe"
+import { X, Y, CAPTION } from "./constants/tables"
+
+import axis from "./types/axis"
 
 import "./styles/Tables.css"
 
 const Tables = ({ display, axes, setAxes }) => {
-    const [x, setX]
-        = useState(0)
+    const [x, setX] = useState(X)
+    const [y, setY] = useState(Y)
 
-    const [y, setY]
-        = useState(0)
-
-    const change = (event: event) => {
-        const value = event.target.value
-        const integer = parseInt(value)
-        setY(integer)
-    }
-
-    const add = () => {
-        const copy = [...axes]
-        const push = { x, y }
-
-        copy.push(push)
-        setAxes(copy)
-
-        setX(x + 1)
-        setY(0)
-    }
-
-    const remove = (value: number) => {
-        const copy = [...axes]
-        const updated = copy.filter((axe) =>
-            axe.y !== value
-        )
-
-        setAxes(updated)
-    }
-
-
-    const Axes = () =>
-        axes.map((axe: axe) =>
-            <Raw
-                key={key()}
-                axe={axe}
-                remove={remove}
-            />
-        )
-
-    addEventListener("keypress", (event) => {
-        if (event.key == "Enter") add()
-    })
+    const [caption, setCaption]
+        = useState(CAPTION)
 
     return <table style={{ display }}>
-        <tbody>
-            <Axes />
+        <caption>
+            {capitalize(caption)}
+        </caption>
+        <tbody>{
+            axes.map((axis: axis) => <Field
+                key={key()}
+                axes={axes}
+                setAxes={setAxes}
+                axis={axis}
+            />)
+        }
             <tr>
                 <td>
                     <input
+                        className="insert"
                         type="text"
                         value={`${y}`}
-                        onChange={change}
+                        onChange={(event) =>
+                            change(event, setY)
+                        }
                     />
                 </td>
+                <button
+                    className="insert"
+                    onClick={() => {
+                        insert(axes, x, y, setAxes)
+                        progress(x, setX, setY)
+                    }}
+                >
+                    insert
+                </button>
             </tr>
         </tbody>
     </table>

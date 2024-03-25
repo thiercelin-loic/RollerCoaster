@@ -4,8 +4,8 @@ import Bar from "./Bar"
 
 import "./styles/Diagram.css"
 
-const Diagram = ({axes}) => {
-    return <div>
+const Diagram = ({style, axes}) => {
+    return <div className="tab" style={style}>
         <div className="axis" id="x" />
         <div className="axis" id="y" />
         <Bar axes={axes} />

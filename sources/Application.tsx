@@ -4,58 +4,53 @@ import Diagram from "./libraries/Diagram"
 import Tools from "./libraries/Tools"
 import Tables from "./libraries/Tables"
 
+import turn from "./libraries/handlers/turn"
+
+import {
+    AXES,
+    WIDTH,
+    HEIGHT,
+    MARGIN_TOP,
+    DISPLAY
+} from "./libraries/constants/applications"
+
 import "./index.css"
 
 const Application = () => {
-    const [axes, setAxes]
-        = useState([{ x: 0, y: 0 }])
-
-    const [width, setWidth]
-        = useState("100%")
-
-    const [height, setHeight]
-        = useState("99%")
+    const [axes, setAxes] = useState(AXES)
+    const [width, setWidth] = useState(WIDTH)
+    const [height, setHeight] = useState(HEIGHT)
 
     const [marginTop, setMarginTop]
-        = useState("0%")
+        = useState(MARGIN_TOP)
 
     const [display, setDisplay]
-        = useState("none")
+        = useState(DISPLAY)
 
     const style
         = { width, height, marginTop }
 
-    const changeWidth = () =>
-        width == "100%"
-            ? setWidth("75%")
-            : setWidth("100%")
-
-    const changeHeight = () =>
-        height == "99%"
-            ? setHeight("75%")
-            : setHeight("99%")
-
-    const changeMarginTop = () =>
-        marginTop == "0%"
-            ? setMarginTop("5%")
-            : setMarginTop("0%")
-
-    const changeDisplay = () =>
-        display == "none"
-            ? setDisplay("table")
-            : setDisplay("none")
-
     const focus = () => {
-        changeWidth()
-        changeHeight()
-        changeMarginTop()
-        changeDisplay()
+        turn(
+            width, WIDTH,
+            setWidth, "75%"
+        ); turn(
+            height, HEIGHT,
+            setHeight, "75%"
+        ); turn(
+            marginTop, MARGIN_TOP,
+            setMarginTop, "5%"
+        ); turn(
+            display, DISPLAY,
+            setDisplay, "table"
+        )
     }
 
     return <div>
-        <div className="tab" style={style}>
-            <Diagram axes={axes} />
-        </div>
+        <Diagram
+            style={style}
+            axes={axes}
+        />
         <Tools focus={focus} />
         <Tables
             display={display}
