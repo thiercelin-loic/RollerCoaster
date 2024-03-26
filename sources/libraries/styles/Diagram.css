@@ -1,26 +1,18 @@
-div.axis {
-    border: gray solid 1px;
-    position: absolute;
-}
-
-div.axis#y {
-    left: 50%;
-    height: 100%;
-}
-
-div.axis#x {
-    top: 50%;
-    width: 100%;
-}
-
 div.bar {
-    width: 1px;
-    bottom: 50%;
+    width: 1%;
+    bottom: 0%;
+    left: 5%;
     position: absolute;
-    background: white;
+    background: #ffffff;
 }
 
 p#y {
     position: fixed;
-    bottom: 45%;
+    left: 0%;
+    margin-top: -1.5%;
+    padding-left: 0.5%;
+    border-bottom: gray dashed 1px;
+    color: white;
+    width: 100%;
+    font-size: large;
 }
