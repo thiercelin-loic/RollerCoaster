@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 
-import Diagram from "./libraries/Diagram"
+import Bar from "./libraries/Bar"
 import Tools from "./libraries/Tools"
 import Tables from "./libraries/Tables"
 
@@ -47,7 +47,7 @@ const Application = () => {
     }
 
     return <div>
-        <Diagram
+        <Bar
             style={style}
             axes={axes}
         />
