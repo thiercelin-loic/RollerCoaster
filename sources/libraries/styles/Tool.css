@@ -10,13 +10,13 @@ div.tools {
 p.tools {
     margin: 0%;
     width: 40px;
-    height: 35px;
+    height: 30px;
+    padding-top: 5px;
     text-align: center;
     color: lightgrey;
     background:#181819;
     border-bottom: #80808080 solid 1px;
     user-select: none;
-    font-size: x-large;
     cursor: pointer;
 }
 

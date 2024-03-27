@@ -8,7 +8,7 @@ import { WIDTH } from "./constants/tools"
 
 import "./styles/Tool.css"
 
-const tools = ["ƒ"]
+const tools = ["1"]
 
 const Tools = ({ focus }) => {
     const [width, setWidth]

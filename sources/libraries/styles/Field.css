@@ -1,0 +1,19 @@
+input.value, input.remove {
+    width: 100%;
+    height: 25px;
+    margin-bottom: 5%;
+}
+
+button.remove {
+    background: darkred;
+}
+
+button.add {
+    background: #202042;
+}
+
+img {
+    filter: invert(1);
+    width: 75%;
+    margin-top: 20%;
+}

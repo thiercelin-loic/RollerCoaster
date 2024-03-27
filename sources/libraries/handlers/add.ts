@@ -1,10 +1,8 @@
-const insert = (state, x, y, set) => {
+const add = (state, x, y, set) => {
     const copy = [...state]
     const push = { x, y }
     copy.push(push)
     set(copy)
-
-    console.log(copy)
 }
 
-export default insert
+export default add

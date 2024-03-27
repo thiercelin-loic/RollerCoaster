@@ -41,6 +41,7 @@ select,
 button {
     background: #212125;
     border: solid transparent 1px;
+    box-shadow: #0000003d 5px 5px 15px;
     color: white;
     border-radius: 10px;
     text-align: center;

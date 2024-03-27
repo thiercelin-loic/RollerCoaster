@@ -5,6 +5,10 @@ import remove from "./handlers/remove"
 
 import event from "./types/event"
 
+import icon from "./icons/remove.png"
+
+import "./styles/field.css"
+
 const Field = ({
     axes,
     setAxes,
@@ -35,7 +39,7 @@ const Field = ({
                 remove(axes, setAxes, axis.x)
             }
         >
-            remove
+            <img className="add" src={icon}/>
         </button>
     </tr >
 }

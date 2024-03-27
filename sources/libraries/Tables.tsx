@@ -3,7 +3,7 @@ import capitalize from "capitalize"
 
 import Field from "./Field"
 
-import insert from "./handlers/insert"
+import add from "./handlers/add"
 import progress from "./handlers/progress"
 import change from "./handlers/change"
 
@@ -12,6 +12,8 @@ import key from "./utilities/key"
 import { X, Y, CAPTION } from "./constants/tables"
 
 import axis from "./types/axis"
+
+import icon from "./icons/add.png"
 
 import "./styles/Tables.css"
 
@@ -37,7 +39,7 @@ const Tables = ({ display, axes, setAxes }) => {
             <tr>
                 <td>
                     <input
-                        className="insert"
+                        className="add"
                         type="text"
                         value={`${y}`}
                         onChange={(event) =>
@@ -46,13 +48,13 @@ const Tables = ({ display, axes, setAxes }) => {
                     />
                 </td>
                 <button
-                    className="insert"
+                    className="add"
                     onClick={() => {
-                        insert(axes, x, y, setAxes)
+                        add(axes, x, y, setAxes)
                         progress(x, setX, setY)
                     }}
                 >
-                    insert
+                    <img src={icon} />
                 </button>
             </tr>
         </tbody>

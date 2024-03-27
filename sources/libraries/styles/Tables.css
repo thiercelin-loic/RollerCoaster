@@ -1,37 +1,20 @@
 table {
-    top: 0%;
-    right: 0%;
+    margin-left: 75.75%;
     padding: 1%;
     width: 25%;
-    position: fixed;
     font-family: "Assistant-Light";
     text-align: center;
     background: #181819;
+    position: fixed;
 }
 
 caption {
-    color: white;
     padding: 2%;
+    color: white;
     border-bottom: gray solid 1px;
 }
 
-button.remove,
-button.insert,
-input.value,
-input.insert {
-    width: 90%;
-    height: 30px;
-    font-size: 85%;
-}
-
-button.remove {
+input.add {
     width: 100%;
-    color: red;
-    border: darkred dashed 1px;
-}
-
-button.insert {
-    width: 100%;
-    color: lightgray;
-    background: #202042;
+    height: 25px;
 }
