@@ -1,3 +1,5 @@
-export const X = 0
-export const Y = 0
-export const CAPTION = "table"
+const x = 0
+const y = 0
+const caption = "table"
+
+export const tables = { x, y, caption }

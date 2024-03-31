@@ -1,1 +1,3 @@
-export const WIDTH = "2.75%"
+const width = "2.75%"
+
+export const tools = { width }

@@ -6,42 +6,41 @@ import Tables from "./libraries/Tables"
 
 import turn from "./libraries/handlers/turn"
 
-import {
-    AXES,
-    WIDTH,
-    HEIGHT,
-    MARGIN_TOP,
-    DISPLAY
-} from "./libraries/constants/applications"
+import { application as initial } from "./libraries/constants/application"
 
 import "./index.css"
 
 const Application = () => {
-    const [axes, setAxes] = useState(AXES)
-    const [width, setWidth] = useState(WIDTH)
-    const [height, setHeight] = useState(HEIGHT)
+    const [axes, setAxes]
+        = useState(initial.axes)
+
+    const [width, setWidth]
+        = useState(initial.width)
+
+    const [height, setHeight]
+        = useState(initial.height)
 
     const [marginTop, setMarginTop]
-        = useState(MARGIN_TOP)
+        = useState(initial.marginTop)
 
     const [display, setDisplay]
-        = useState(DISPLAY)
+        = useState(initial.display)
 
     const style
         = { width, height, marginTop }
 
     const focus = () => {
         turn(
-            width, WIDTH,
+            width, initial.width,
             setWidth, "75%"
         ); turn(
-            height, HEIGHT,
+            height, initial.height,
             setHeight, "75%"
         ); turn(
-            marginTop, MARGIN_TOP,
+            marginTop, initial.marginTop,
             setMarginTop, "5%"
         ); turn(
-            display, DISPLAY,
+            display, initial.display,
             setDisplay, "table"
         )
     }

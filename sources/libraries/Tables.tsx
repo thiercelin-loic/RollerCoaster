@@ -1,28 +1,24 @@
 import React, { useState } from "react"
 import capitalize from "capitalize"
-
 import Field from "./Field"
-
 import add from "./handlers/add"
 import progress from "./handlers/progress"
 import change from "./handlers/change"
-
 import key from "./utilities/key"
-
-import { X, Y, CAPTION } from "./constants/tables"
-
+import { tables as initial } from "./constants/tables"
 import axis from "./types/axis"
-
 import icon from "./icons/add.png"
-
 import "./styles/Tables.css"
 
 const Tables = ({ display, axes, setAxes }) => {
-    const [x, setX] = useState(X)
-    const [y, setY] = useState(Y)
+    const [x, setX]
+        = useState(initial.x)
+
+    const [y, setY]
+        = useState(initial.y)
 
     const [caption, setCaption]
-        = useState(CAPTION)
+        = useState(initial.caption)
 
     return <table style={{ display }}>
         <caption>
