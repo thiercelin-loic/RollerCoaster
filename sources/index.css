@@ -20,7 +20,7 @@
 }
 
 body {
-    background: black;
+    background: #201d1b;
     margin: 0%;
     padding: 0%;
 }
@@ -39,7 +39,7 @@ p {
 input,
 select,
 button {
-    background: #212125;
+    background: #2d2d33;
     border: solid transparent 1px;
     box-shadow: #0000003d 5px 5px 15px;
     color: white;
@@ -59,7 +59,7 @@ div.tab {
     height: 99%;
     overflow: hidden;
     border-bottom: orange solid 1px;
-    background: #1b1816;
+    background: #ffffff;
 }
 
 option.label {

@@ -2,7 +2,7 @@ div.tools {
     width: 2.75%;
     height: 100%;
     right: 0;
-    background: linear-gradient(#212125,rgb(26, 28, 39));
+    background: linear-gradient(#2d2d33,#1a1c27);
     border-left: dashed gray 1px;
     position: absolute;
 }
