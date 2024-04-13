@@ -4,13 +4,12 @@ import capitalize from "capitalize"
 import Field from "./Field"
 
 import add from "./handlers/add"
-import progress from "./handlers/progress"
 import key from "./utilities/key"
 
 import { tables as initial } from "./constants/tables"
 
 import axis from "./types/axis"
-import icon from "./icons/add.png"
+import Add from "./icons/Add"
 
 import "./styles/Tables.css"
 
@@ -56,7 +55,7 @@ const Tables = ({ display, axes, setAxes }) => {
                         progress(x, setX, setY)
                     }}
                 >
-                    <img src={icon} />
+                    <Add />
                 </button>
             </tr>
         </tbody>

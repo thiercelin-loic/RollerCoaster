@@ -12,7 +12,7 @@ button.add {
     background: #202042;
 }
 
-img {
+svg {
     filter: invert(1);
     width: 75%;
     margin-top: 20%;

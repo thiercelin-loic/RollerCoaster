@@ -1,13 +1,13 @@
 import React, { useState } from "react"
 
+import Remove from "./icons/Remove"
+
 import update from "./handlers/update"
 import remove from "./handlers/remove"
 
 import event from "./types/event"
 
-import icon from "./icons/remove.png"
-
-import "./styles/field.css"
+import "./styles/Field.css"
 
 const Field = ({
     axes,
@@ -40,7 +40,7 @@ const Field = ({
                 remove(axes, setAxes, axis.x)
             }
         >
-            <img className="add" src={icon} />
+            <Remove/>
         </button>
     </tr >
 }
