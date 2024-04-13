@@ -1,13 +1,17 @@
 import React, { useState } from "react"
 import capitalize from "capitalize"
+
 import Field from "./Field"
+
 import add from "./handlers/add"
 import progress from "./handlers/progress"
-import change from "./handlers/change"
 import key from "./utilities/key"
+
 import { tables as initial } from "./constants/tables"
+
 import axis from "./types/axis"
 import icon from "./icons/add.png"
+
 import "./styles/Tables.css"
 
 const Tables = ({ display, axes, setAxes }) => {
@@ -38,9 +42,11 @@ const Tables = ({ display, axes, setAxes }) => {
                         className="add"
                         type="text"
                         value={`${y}`}
-                        onChange={(event) =>
-                            change(event, setY)
-                        }
+                        onChange={(event) => {
+                            const value = event.target.value
+                            const integer = parseInt(value)
+                            setY(integer)
+                        }}
                     />
                 </td>
                 <button

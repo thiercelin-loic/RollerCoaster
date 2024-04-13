@@ -16,21 +16,22 @@ const Field = ({
 }) => {
     const [value, setValue] = useState(axis.y)
 
-    const change = (event: event) => {
-        const value = event.target.value
-        const integer = parseInt(value)
-
-        update(axes, axis.x, integer, setAxes)
-        setValue(integer)
-    }
-
     return <tr>
         <th scope="raw">
             <input
                 className="value"
                 type="text"
                 value={value}
-                onChange={change}
+                onChange={(event: event) => {
+                    const value = event.target.value
+                    setValue(value)
+                    update(
+                        axes,
+                        axis.x,
+                        parseInt(value),
+                        setAxes
+                    )
+                }}
             />
         </th>
         <button
@@ -39,7 +40,7 @@ const Field = ({
                 remove(axes, setAxes, axis.x)
             }
         >
-            <img className="add" src={icon}/>
+            <img className="add" src={icon} />
         </button>
     </tr >
 }
