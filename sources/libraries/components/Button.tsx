@@ -1,8 +1,9 @@
 import React from "react"
 import { useState } from "react"
+import capitalize from "capitalize"
 
 const Button = (
-    { tool, width, focus }
+    { tool, focus }
 ) => {
     const [color, setColor]
         = useState("lightgrey")
@@ -14,7 +15,7 @@ const Button = (
         = { color, borderColor }
 
     const colorize = () => {
-        if (width == "2.75%") {
+        if (color == 'lightgrey') {
             setColor("orange")
             setBorderColor("orange")
         } else {
@@ -32,7 +33,7 @@ const Button = (
         className="tools"
         style={style}
         onClick={onClick}>{
-            tool
+            capitalize(tool)
         }</p>
 }
 

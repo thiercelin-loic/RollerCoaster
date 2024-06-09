@@ -5,7 +5,6 @@ import Tools from "./libraries/Tools"
 import Tables from "./libraries/Tables"
 
 import turn from "./libraries/handlers/turn"
-
 import { application as initial } from "./libraries/constants/application"
 
 import "./index.css"
@@ -38,7 +37,7 @@ const Application = () => {
             setHeight, "75%"
         ); turn(
             marginTop, initial.marginTop,
-            setMarginTop, "5%"
+            setMarginTop, "2%"
         ); turn(
             display, initial.display,
             setDisplay, "table"
@@ -51,11 +50,16 @@ const Application = () => {
             axes={axes}
         />
         <Tools focus={focus} />
-        <Tables
-            display={display}
-            axes={axes}
-            setAxes={setAxes}
-        />
+        <div className="right">
+            <p className="title" style={{ display }}>
+                Tables
+            </p>
+            <Tables
+                display={display}
+                axes={axes}
+                setAxes={setAxes}
+            />
+        </div>
     </div>
 }
 

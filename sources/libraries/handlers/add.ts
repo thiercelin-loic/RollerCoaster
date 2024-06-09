@@ -10,7 +10,9 @@ const add = (
     ) => void
 ) => {
     const copy = [...state]
-    const push = { x, y }
+    const init = isNaN(y) ? 0 : y
+    const push = { x, y: init }
+    
     copy.push(push)
     set(copy)
 }

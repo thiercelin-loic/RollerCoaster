@@ -1,20 +1,17 @@
 div.tools {
     width: 2.75%;
     height: 100%;
-    right: 0;
-    background: linear-gradient(#2d2d33,#1a1c27);
-    border-left: dashed gray 1px;
     position: absolute;
 }
 
 p.tools {
     margin: 0%;
-    width: 40px;
+    width: 200%;
     height: 30px;
     padding-top: 5px;
+    box-shadow: #2d2d332f 10px 10px 10px;
     text-align: center;
-    color: lightgrey;
-    background:#181819;
+    background: #17161d;
     border-bottom: #80808080 solid 1px;
     user-select: none;
     cursor: pointer;

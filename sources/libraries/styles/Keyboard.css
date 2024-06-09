@@ -1,0 +1,43 @@
+table.keyboard {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    width: 25%;
+    height: 35%;
+    padding: 1%;
+    color: white;
+    border-top: solid orange 1px;
+    background: #17161d;
+    box-shadow: 5px -10px 10px #0000006e;
+}
+
+td.keyboard {
+    padding: 20px;
+}
+
+td.keyboard:hover {
+    border: solid orangered 1px;
+}
+
+td.keyboard#number {
+    background: #55555a;
+}
+
+td.keyboard#equal {
+    background: orangered;
+}
+
+p.order {
+    font-size: x-large;
+    font-weight: bolder;
+}
+
+p.add {
+    position: fixed;
+    right: 1%;
+    bottom: 36.5%;
+    background: darkslateblue;
+    text-align: center;
+    width: 2%;
+    border-radius: 10px;
+}

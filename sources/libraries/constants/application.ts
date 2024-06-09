@@ -1,4 +1,6 @@
-const axes = [{ x: 0, y: 0 }]
+const axes = [
+]
+
 const width = "100%"
 const height = "99.9%"
 const marginTop = "0%"

@@ -1,67 +1,103 @@
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
+  from {
+    opacity: 0;
+  }
 
-    to {
-        opacity: 1;
-    }
-}
-
-
-@font-face {
-    font-family: Assistant-Light;
-    src: url("./fonts/Assistant-Light.ttf");
+  to {
+    opacity: 1;
+  }
 }
 
 @font-face {
-    font-family: Assistant-Medium;
-    src: url("./fonts/Assistant-Medium.ttf");
+  font-family: Assistant-Light;
+  src: url("./fonts/Assistant-Light.ttf");
+}
+
+@font-face {
+  font-family: Assistant-Medium;
+  src: url("./fonts/Assistant-Medium.ttf");
+}
+
+* {
+  font-family: "Assistant-Medium";
 }
 
 body {
-    background: #201d1b;
-    margin: 0%;
-    padding: 0%;
+  background: #2c2a37;
+  margin: 0%;
+  padding: 0%;
 }
 
 p,
 input,
 select {
-    font-family: "Assistant-Light";
+  font-family: "Assistant-Light";
 }
 
 p {
-    font-family: "Assistant-Light";
-    color: white;
+  font-family: "Assistant-Light";
+  color: white;
 }
 
 input,
 select,
-button {
-    background: #2d2d33;
-    border: solid transparent 1px;
-    box-shadow: #0000003d 5px 5px 15px;
-    color: white;
-    border-radius: 10px;
-    text-align: center;
-    font-size: medium;
-    overflow: visible;
+button,
+td {
+  background: #4d4947;
+  border: solid transparent 1px;
+  box-shadow: #0000003d 5px 5px 15px;
+  color: white;
+  border-radius: 10px;
+  text-align: center;
+  font-size: medium;
+  overflow: visible;
+}
+
+caption {
+  font-size: x-large;
+  padding: 2%;
+  background: #17161d;
+  color: white;
+  text-align: start;
 }
 
 div.tab,
 div.tools {
-    position: absolute;
+  position: absolute;
 }
 
 div.tab {
-    width: 100%;
-    height: 99%;
-    overflow: hidden;
-    border-bottom: orange solid 1px;
-    background: #ffffff;
+  width: 100%;
+  height: 99%;
+  overflow: hidden;
+  border-bottom: orange solid 3px;
+  background: #ffffff;
+}
+
+div.right {
+  width: 25%;
+  position: fixed;
+  right: 0%;
+  overflow-y: scroll;
+  height: 62%;
 }
 
 option.label {
-    color: gray;
+  color: gray;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #888;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }

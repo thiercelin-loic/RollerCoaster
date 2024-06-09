@@ -1,15 +1,15 @@
 import React, { useState } from "react"
-import capitalize from "capitalize"
 
 import Field from "./Field"
+import Keyboard from "./Keyboard"
 
 import add from "./handlers/add"
+import progress from "./handlers/progress"
 import key from "./utilities/key"
 
 import { tables as initial } from "./constants/tables"
 
 import axis from "./types/axis"
-import Add from "./icons/Add"
 
 import "./styles/Tables.css"
 
@@ -19,15 +19,19 @@ const Tables = ({ display, axes, setAxes }) => {
 
     const [y, setY]
         = useState(initial.y)
+    
+    addEventListener("keydown", (event) => {
+        const key = event.key;
 
-    const [caption, setCaption]
-        = useState(initial.caption)
+        setTimeout(() => {
+            if (key == "Enter") {
+                add(axes, x, y, setAxes)
+                progress(x, setX, setY)
+            }
+        })
+    })
 
-    return <table style={{ display }}>
-        <caption>
-            {capitalize(caption)}
-        </caption>
-        <tbody>{
+    return <div className="tables" style={{ display }}>{
             axes.map((axis: axis) => <Field
                 key={key()}
                 axes={axes}
@@ -35,31 +39,23 @@ const Tables = ({ display, axes, setAxes }) => {
                 axis={axis}
             />)
         }
-            <tr>
-                <td>
-                    <input
-                        className="add"
-                        type="text"
-                        value={`${y}`}
-                        onChange={(event) => {
-                            const value = event.target.value
-                            const integer = parseInt(value)
-                            setY(integer)
-                        }}
-                    />
-                </td>
-                <button
-                    className="add"
-                    onClick={() => {
-                        add(axes, x, y, setAxes)
-                        progress(x, setX, setY)
-                    }}
-                >
-                    <Add />
-                </button>
-            </tr>
-        </tbody>
-    </table>
+        <input
+            className="value"
+            type="text"
+            value={y.toString()}
+            onChange={(event) => {
+                const value = event.target.value
+                const integer = parseInt(value)
+                setY(integer)
+            }}
+        />
+        <p className="instruction">Press "Enter" to insert a value, and "Delete" to remove it.</p>
+        <p className="instruction">For changing an existing value, click overhere.</p>
+        <Keyboard
+            display={display}
+            set={setY}
+        />
+    </div>
 }
 
 export default Tables
