@@ -12,7 +12,7 @@ table.keyboard {
 }
 
 td.keyboard {
-    padding: 20px;
+    width: 30px;
 }
 
 td.keyboard:hover {
@@ -25,6 +25,9 @@ td.keyboard#number {
 
 td.keyboard#equal {
     background: orangered;
+    color: black;
+    padding: 2.5% 1.35%;
+    position: fixed;
 }
 
 p.order {
@@ -35,7 +38,7 @@ p.order {
 p.insert {
     position: fixed;
     right: 1%;
-    bottom: 36.5%;
+    bottom: 33.5%;
     background: darkslateblue;
     text-align: center;
     width: 2%;
