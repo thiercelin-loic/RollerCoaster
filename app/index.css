@@ -1,0 +1,15 @@
+@font-face {
+  font-family: 'Assistant';
+  src: url('./fonts/Assistant.ttf');
+}
+
+* {
+  font-family: 'Assistant';
+  margin: 0%;
+}
+
+body {
+  background: linear-gradient(45deg, #4C516D, #a9a9a9 50%);
+  height: 730px;
+  overflow: hidden;
+}
