@@ -1,3 +1,15 @@
+@keyframes darkness {
+  to {
+    background: #333;
+  }
+}
+
+@keyframes lightness {
+  to {
+    border: solid orangered 1;
+  }
+}
+
 @font-face {
   font-family: 'Assistant';
   src: url('./fonts/Assistant.ttf');
@@ -10,6 +22,60 @@
 
 body {
   background: linear-gradient(45deg, #4C516D, #a9a9a9 50%);
-  height: 730px;
+  height: 730;
   overflow: hidden;
+}
+
+header {
+  background: #ffffff;
+  height: 100;
+  box-shadow: gray 10 10 10;
+}
+
+svg {
+  width: 25;
+  height: 25;
+  padding: 2.25 10;
+  display: inline-flex;
+  cursor: pointer;
+  fill: white;
+}
+
+svg:hover {
+  animation: darkness 0.25s both;
+}
+
+svg.close {
+  filter: invert(1);
+  border-radius: 10;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: unset;
+  margin: 25;
+}
+
+label {
+  margin: 10 25;
+  display: flex;
+}
+
+input,
+button,
+select,
+option {
+  border-radius: 10;
+  border: darkgray solid 1;
+  padding: 10;
+  width: 100;
+}
+
+button:hover,
+input:hover,
+select:hover,
+option:hover {
+  animation: lightness both 1s;
+  cursor: pointer;
 }
