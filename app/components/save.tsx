@@ -8,8 +8,9 @@ import { event as onSubmit } from '../types/onSubmit'
 
 function Save({ name, setName, saveIt }: project) {
     const [value, setValue] = useState(name)
-    const [recent, setRecent] = useState(['/x', '/y'])
-    const [location, setLocation] = useState('/root')
+    // const [recent, setRecent] = useState(['/x', '/y'])
+    // const [location, setLocation] = useState('/root')
+    const [tag, setTag] = useState('')
     const [alert, setAlert] = useState('')
     const [border, setBorder] = useState('none')
     const [form, setForm] = useState('white')
@@ -21,7 +22,7 @@ function Save({ name, setName, saveIt }: project) {
     const characters = value.split('')
     const unauthorized = `^[^~)('!*<>:;,?"*|/]+$`.split('')
     const error = 'Name contains unauthorized characters.'
-    const saved = `'${value}' has been saved.`
+    const saved = `'${value}' has been saved. (${tag})`
     const delay = 1000 * 3
 
     function forgiven() {
@@ -38,7 +39,7 @@ function Save({ name, setName, saveIt }: project) {
     function reject() {
         setSubmit('gray')
         setAlert(error)
-        
+
         setBorder('red solid 1px')
         setForm('#ecd7d7')
 
@@ -78,41 +79,32 @@ function Save({ name, setName, saveIt }: project) {
 
     const Title = () => <h2>Save this file</h2>
     const Alert = () => <p className='alert'>{alert}</p>
+
     const Submit = () => <input
         type='submit'
         value='Save'
         style={style}
     />
 
-    const Recent = () => recent.map((folder) =>
-        <option key={folder}>
-            {folder}
-        </option>
-    )
-
-    const Select = () => {
-        const onChange = (event: onChange) =>
-            setLocation(event.target.value)
-
-        return <select className='save' onChange={onChange}>
-            <Recent />
-        </select>
+        return <form className='save' onSubmit={onSubmit} style={{ border, background: form }}>
+            <Title />
+            <Close onClick={saveIt} />
+            <label>Name *</label>
+            <input
+                className='save'
+                type='text'
+                value={value}
+                onChange={onChange}
+            />
+            <label>Tag</label>
+            <input
+                className='save'
+                type="text"
+                value={tag}
+                onChange={(event) => setTag(event.target.value)}
+            />
+            <Alert />
+            <Submit />
+        </form>
     }
-
-    return <form className='save' onSubmit={onSubmit} style={{ border, background: form }}>
-        <Title />
-        <Close onClick={saveIt} />
-        <label>Name *</label>
-        <input
-            className='save'
-            type='text'
-            value={value}
-            onChange={onChange}
-        />
-        <label>Recent location</label>
-        <Select />
-        <Alert />
-        <Submit />
-    </form>
-}
-export default Save
+        export default Save

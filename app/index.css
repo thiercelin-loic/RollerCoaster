@@ -22,7 +22,7 @@
 
 body {
   background: linear-gradient(45deg, #4C516D, #a9a9a9 50%);
-  height: 730;
+  height: 100vh;
   overflow: hidden;
 }
 
