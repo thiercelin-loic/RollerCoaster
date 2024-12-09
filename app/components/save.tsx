@@ -8,8 +8,6 @@ import { event as onSubmit } from '../types/onSubmit'
 
 function Save({ name, setName, saveIt }: project) {
     const [value, setValue] = useState(name)
-    // const [recent, setRecent] = useState(['/x', '/y'])
-    // const [location, setLocation] = useState('/root')
     const [tag, setTag] = useState('')
     const [alert, setAlert] = useState('')
     const [border, setBorder] = useState('none')
@@ -19,11 +17,11 @@ function Save({ name, setName, saveIt }: project) {
     const [cursor, setCursor] = useState('focus')
 
     const style = { background: submit, color, cursor }
-    const characters = value.split('')
-    const unauthorized = `^[^~)('!*<>:;,?"*|/]+$`.split('')
-    const error = 'Name contains unauthorized characters.'
-    const saved = `'${value}' has been saved. (${tag})`
-    const delay = 1000 * 3
+    const characters = [value.split(''), tag.split('')]
+    const unauthorized = `^[^~)('!*<>:;,?'*|/]+$ `.split('')
+    const error = 'Fields contains unauthorized characters.'
+    const saved = `'${tag}${tag && '.'}${value}' has been saved successfully.`
+    const delay = 1000 * 5
 
     function forgiven() {
         setSubmit('#4c516d')
@@ -52,6 +50,7 @@ function Save({ name, setName, saveIt }: project) {
         setAlert(saved)
         setForm('white')
         setName(value)
+        setBorder('none')
     }
 
     const match = (
@@ -74,7 +73,8 @@ function Save({ name, setName, saveIt }: project) {
     function onSubmit(event: onSubmit) {
         event.preventDefault()
         accept()
-        characters.map(filter)
+        characters[0].map(filter)
+        characters[1].map(filter)
     }
 
     const Title = () => <h2>Save this file</h2>
@@ -86,25 +86,25 @@ function Save({ name, setName, saveIt }: project) {
         style={style}
     />
 
-        return <form className='save' onSubmit={onSubmit} style={{ border, background: form }}>
-            <Title />
-            <Close onClick={saveIt} />
-            <label>Name *</label>
-            <input
-                className='save'
-                type='text'
-                value={value}
-                onChange={onChange}
-            />
-            <label>Tag</label>
-            <input
-                className='save'
-                type="text"
-                value={tag}
-                onChange={(event) => setTag(event.target.value)}
-            />
-            <Alert />
-            <Submit />
-        </form>
-    }
-        export default Save
+    return <form className='save' onSubmit={onSubmit} style={{ border, background: form }}>
+        <Title />
+        <Close onClick={saveIt} />
+        <label>Name *</label>
+        <input
+            className='save'
+            type='text'
+            value={value}
+            onChange={onChange}
+        />
+        <label>Tag</label>
+        <input
+            className='save'
+            type='text'
+            value={tag}
+            onChange={(event) => setTag(event.target.value)}
+        />
+        <Alert />
+        <Submit />
+    </form>
+}
+export default Save
