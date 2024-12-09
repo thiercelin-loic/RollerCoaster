@@ -37,6 +37,9 @@ input[type=submit] {
     border: none;
     background: #4C516D;
     color: white;
+    position: absolute;
+    bottom: 25;
+    right: 25;
 }
 
 select.save {
@@ -45,5 +48,5 @@ select.save {
 
 p.alert {
     margin: 25px;
-    color: red;
+    color: gray;
 }

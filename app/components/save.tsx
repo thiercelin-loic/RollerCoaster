@@ -8,27 +8,72 @@ import { event as onSubmit } from '../types/onSubmit'
 
 function Save({ name, setName, saveIt }: project) {
     const [value, setValue] = useState(name)
-    const [location, setLocation] = useState('/')
+    const [recent, setRecent] = useState(['/x', '/y'])
+    const [location, setLocation] = useState('/root')
     const [alert, setAlert] = useState('')
+    const [border, setBorder] = useState('none')
+    const [form, setForm] = useState('white')
+    const [submit, setSubmit] = useState('#4c516d')
+    const [color, setColor] = useState('white')
+    const [cursor, setCursor] = useState('focus')
 
-    const folders = ['/', '//']
-    const background = !value ? 'gray' : ''
-    const color = !value ? 'black' : ''
-    const cursor = !value ? 'not-allowed' : ''
-    const style = { background, color, cursor }
-    const missing = 'Name of project missing, please retry it.'
+    const style = { background: submit, color, cursor }
+    const characters = value.split('')
+    const unauthorized = `^[^~)('!*<>:;,?"*|/]+$`.split('')
+    const error = 'Name contains unauthorized characters.'
+    const saved = `'${value}' has been saved.`
+    const delay = 1000 * 3
 
-    const onChange = (event: onChange) =>
-        setValue(event.target.value)
+    function forgiven() {
+        setSubmit('#4c516d')
+        setAlert('')
 
-    const onSubmit = (event: onSubmit) => {
-        event.preventDefault()
+        setBorder('none')
+        setForm('white')
 
-        !value ? setAlert(missing) : (
-            setName(value),
-            setAlert(''),
-            console.log({ value, location })
+        setColor('white')
+        setCursor('focus')
+    }
+
+    function reject() {
+        setSubmit('gray')
+        setAlert(error)
+        
+        setBorder('red solid 1px')
+        setForm('#ecd7d7')
+
+        setName('')
+        setColor('black')
+        setCursor('not-allowed')
+    }
+
+    function accept() {
+        setAlert(saved)
+        setForm('white')
+        setName(value)
+    }
+
+    const match = (
+        character: string,
+        unauthorized: string
+    ) => character == unauthorized && (
+        reject(),
+        setTimeout(forgiven, delay)
+    )
+
+    const filter = (character: string) =>
+        unauthorized.map((unauthorized) =>
+            match(character, unauthorized)
         )
+
+    function onChange(event: onChange) {
+        setValue(event.target.value)
+    }
+
+    function onSubmit(event: onSubmit) {
+        event.preventDefault()
+        accept()
+        characters.map(filter)
     }
 
     const Title = () => <h2>Save this file</h2>
@@ -39,12 +84,7 @@ function Save({ name, setName, saveIt }: project) {
         style={style}
     />
 
-    const Cancel = () =>
-        <button className='cancel' onClick={saveIt}>
-            Cancel
-        </button>
-
-    const Folders = () => folders.map((folder) =>
+    const Recent = () => recent.map((folder) =>
         <option key={folder}>
             {folder}
         </option>
@@ -55,11 +95,11 @@ function Save({ name, setName, saveIt }: project) {
             setLocation(event.target.value)
 
         return <select className='save' onChange={onChange}>
-            <Folders />
+            <Recent />
         </select>
     }
 
-    return <form className='save' onSubmit={onSubmit}>
+    return <form className='save' onSubmit={onSubmit} style={{ border, background: form }}>
         <Title />
         <Close onClick={saveIt} />
         <label>Name *</label>
@@ -72,10 +112,7 @@ function Save({ name, setName, saveIt }: project) {
         <label>Recent location</label>
         <Select />
         <Alert />
-        <div className='buttons'>
-            <Submit />
-            <Cancel />
-        </div>
+        <Submit />
     </form>
 }
 export default Save
