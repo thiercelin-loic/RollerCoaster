@@ -10,7 +10,7 @@
 <ul>
 <li><h3>Header</h3>
 <p>
-    The header contains buttons and information about managing the project (saves, undo/redo, and login). The first submenu is the saving division (located in './component/save.tsx'). This saving form take name of current project work by users, and the future location where users can host it. Submition of this form can not be able if the name of current project is missed.
+    The header contains buttons and information about managing the project (saves, undo/redo, and login). The first submenu is the saving division (located in './component/form.tsx'). This saving form take name of current project work by users, and the future location where users can host it. Submition of this form can not be able if the name of current project is missed.
 </p>
 </li>
 </ul>
