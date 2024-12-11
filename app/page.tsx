@@ -1,31 +1,39 @@
 'use client'
 
 import React, { useState } from 'react'
-import Project from './components/project'
-import Save from './components/save'
-import './styles/project.css'
-import './styles/save.css'
+
+import account from './icons/account.json'
+import close from './icons/close.json'
+import redo from './icons/redo.json'
+import save from './icons/save.json'
+import undo from './icons/undo.json'
+
+import Nav from './components/Nav'
+import Form from './components/Form'
+
+import './styles/Nav.css'
+import './styles/Form.css'
 
 function Home() {
-    const [name, setName] = useState('')
     const [onSave, setSave] = useState(false)
+    const [work, setWork] = useState('')
 
-    const saveIt = () => !onSave
-        ? setSave(true)
-        : setSave(false)
+    const draws = [account, close, redo, save, undo]
 
     return <div>
         <header>
-            <Project
-                name={name}
-                setName={setName}
-                saveIt={saveIt}
+            <Nav
+                value={work}
+                draws={draws}
+                setValue={setWork}
+                onClick={() => setSave(true)}
             />
         </header>{
-            onSave && <Save
-                name={name}
-                setName={setName}
-                saveIt={saveIt}
+            onSave && <Form
+                value={work}
+                draws={draws}
+                setValue={setWork}
+                onClick={() => setSave(false)}
             />}
     </div>
 }

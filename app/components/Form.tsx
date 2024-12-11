@@ -1,13 +1,12 @@
 import { useState } from 'react'
 
-import Close from '../icons/close'
-import project from '../types/project'
-
+import Svg from './Svg'
+import nav from '../types/nav'
 import { event as onChange } from '../types/onChange'
 import { event as onSubmit } from '../types/onSubmit'
 
-function Save({ name, setName, saveIt }: project) {
-    const [value, setValue] = useState(name)
+function Form({ value, draws, setValue, onClick }: nav) {
+    const [name, setName] = useState(value || 'Untitled')
     const [tag, setTag] = useState('')
     const [alert, setAlert] = useState('')
     const [border, setBorder] = useState('none')
@@ -17,10 +16,10 @@ function Save({ name, setName, saveIt }: project) {
     const [cursor, setCursor] = useState('focus')
 
     const style = { background: submit, color, cursor }
-    const characters = [value.split(''), tag.split('')]
-    const unauthorized = `^[^~)('!*<>:;,?'*|/]+$ `.split('')
+    const characters = [name.split(''), tag.split('')]
+    const unauthorized = `^[^~)('!*<>:;,?"*|/]+$ `.split('')
     const error = 'Fields contains unauthorized characters.'
-    const saved = `'${tag}${tag && '.'}${value}' has been saved successfully.`
+    const saved = `${`${tag}${tag && '.'}${name}`} has been saved successfully.`
     const delay = 1000 * 5
 
     function forgiven() {
@@ -41,34 +40,37 @@ function Save({ name, setName, saveIt }: project) {
         setBorder('red solid 1px')
         setForm('#ecd7d7')
 
-        setName('')
+        setValue && setValue('')
         setColor('black')
         setCursor('not-allowed')
+
+        setTimeout(forgiven, delay)
     }
 
     function accept() {
         setAlert(saved)
         setForm('white')
-        setName(value)
+        setValue && setValue(`${tag}${tag && '.'}${name}`)
+
+        setTag(tag)
         setBorder('none')
     }
 
-    const match = (
-        character: string,
-        unauthorized: string
-    ) => character == unauthorized && (
-        reject(),
-        setTimeout(forgiven, delay)
-    )
+    const match = (character: string, unauthorized: string) =>
+        character == unauthorized
+        && reject()
 
-    const filter = (character: string) =>
-        unauthorized.map((unauthorized) =>
-            match(character, unauthorized)
-        )
+    const filter = (character: string) => unauthorized
+        .map((unauthorized) => match(
+            character,
+            unauthorized
+        ))
 
-    function onChange(event: onChange) {
-        setValue(event.target.value)
-    }
+    const rename = (event: onChange) =>
+        setName(event.target.value)
+
+    const retag = (event: onChange) =>
+        setTag(event.target.value)
 
     function onSubmit(event: onSubmit) {
         event.preventDefault()
@@ -88,23 +90,28 @@ function Save({ name, setName, saveIt }: project) {
 
     return <form className='save' onSubmit={onSubmit} style={{ border, background: form }}>
         <Title />
-        <Close onClick={saveIt} />
-        <label>Name *</label>
-        <input
-            className='save'
-            type='text'
-            value={value}
-            onChange={onChange}
+        <Svg
+            className='close'
+            draw={draws ? draws[1] : ''}
+            onClick={onClick || console.log}
         />
-        <label>Tag</label>
+        <label>Name :</label>
         <input
             className='save'
             type='text'
+            value={name}
+            onChange={rename}
+        />
+        <label>Tag :</label>
+        <input
+            className='save'
+            type="text"
             value={tag}
-            onChange={(event) => setTag(event.target.value)}
+            onChange={retag}
         />
         <Alert />
         <Submit />
     </form>
 }
-export default Save
+
+export default Form
