@@ -15,8 +15,9 @@ import './styles/Nav.css'
 import './styles/Form.css'
 
 function Home() {
+    const [index, setIndex] = useState(0)
+    const [work, setWork] = useState([''])
     const [onSave, setSave] = useState(false)
-    const [work, setWork] = useState('')
 
     const draws = [account, close, redo, save, undo]
 
@@ -25,8 +26,10 @@ function Home() {
             <Nav
                 value={work}
                 draws={draws}
-                setValue={setWork}
+                index={index}
                 onClick={() => setSave(true)}
+                undo={() => index > 0 && setIndex(index - 1)}
+                redo={() => setIndex(index + 1)}
             />
         </header>{
             onSave && <Form
@@ -34,6 +37,8 @@ function Home() {
                 draws={draws}
                 setValue={setWork}
                 onClick={() => setSave(false)}
+                setIndex={setIndex}
+                redo={() => setIndex(index + 1)}
             />}
     </div>
 }

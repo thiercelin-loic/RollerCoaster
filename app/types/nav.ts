@@ -1,10 +1,14 @@
 import onClick from "./onClick"
 
 interface nav {
-    value?: string,
+    value?: string[],
     draws?: string[],
-    setValue?: (name: string) => void,
+    index?: number,
+    setValue?: (name: string[]) => void,
+    setIndex?: (index: number) => void,
     onClick?: onClick,
+    undo?: onClick,
+    redo?: onClick,
 }
 
 export default nav

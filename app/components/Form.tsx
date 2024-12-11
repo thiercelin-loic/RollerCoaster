@@ -1,12 +1,14 @@
 import { useState } from 'react'
-
 import Svg from './Svg'
 import nav from '../types/nav'
 import { event as onChange } from '../types/onChange'
 import { event as onSubmit } from '../types/onSubmit'
 
-function Form({ value, draws, setValue, onClick }: nav) {
-    const [name, setName] = useState(value || 'Untitled')
+function Form({ value, draws, index, setValue, setIndex, onClick }: nav) {
+    const initial = value && index
+        ? value[index] : 'Untitled'
+
+    const [name, setName] = useState(initial)
     const [tag, setTag] = useState('')
     const [alert, setAlert] = useState('')
     const [border, setBorder] = useState('none')
@@ -15,6 +17,7 @@ function Form({ value, draws, setValue, onClick }: nav) {
     const [color, setColor] = useState('white')
     const [cursor, setCursor] = useState('focus')
 
+    const update = value ? [...value] : ['']
     const style = { background: submit, color, cursor }
     const characters = [name.split(''), tag.split('')]
     const unauthorized = `^[^~)('!*<>:;,?"*|/]+$ `.split('')
@@ -40,7 +43,6 @@ function Form({ value, draws, setValue, onClick }: nav) {
         setBorder('red solid 1px')
         setForm('#ecd7d7')
 
-        setValue && setValue('')
         setColor('black')
         setCursor('not-allowed')
 
@@ -48,12 +50,16 @@ function Form({ value, draws, setValue, onClick }: nav) {
     }
 
     function accept() {
-        setAlert(saved)
-        setForm('white')
-        setValue && setValue(`${tag}${tag && '.'}${name}`)
+        update.push(`${tag}${tag && '.'}${name}`)
 
-        setTag(tag)
+        setForm('white')
+        setAlert(saved)
+
         setBorder('none')
+        setTag(tag)
+
+        setValue && setValue(update)
+        value && setIndex && setIndex(value.length)
     }
 
     const match = (character: string, unauthorized: string) =>
