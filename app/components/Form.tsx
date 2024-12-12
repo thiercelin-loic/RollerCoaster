@@ -4,11 +4,12 @@ import nav from '../types/nav'
 import { event as onChange } from '../types/onChange'
 import { event as onSubmit } from '../types/onSubmit'
 
-function Form({ value, draws, index, setValue, setIndex, onClick }: nav) {
-    const initial = value && index
-        ? value[index] : 'Untitled'
+const unauthorized = `^[^~)('!*<>:;,?'*|/]+$ `.split('')
+const error = 'Fields contains unauthorized characters.'
+const delay = 1000 * 5
 
-    const [name, setName] = useState(initial)
+function Form({ value, icons, setValue, setIndex, onClick }: nav) {
+    const [name, setName] = useState(value ? value : 'Untitled')
     const [tag, setTag] = useState('')
     const [alert, setAlert] = useState('')
     const [border, setBorder] = useState('none')
@@ -17,13 +18,11 @@ function Form({ value, draws, index, setValue, setIndex, onClick }: nav) {
     const [color, setColor] = useState('white')
     const [cursor, setCursor] = useState('focus')
 
-    const update = value ? [...value] : ['']
+    const _value = value ? [...value] : ['']
     const style = { background: submit, color, cursor }
     const characters = [name.split(''), tag.split('')]
-    const unauthorized = `^[^~)('!*<>:;,?"*|/]+$ `.split('')
-    const error = 'Fields contains unauthorized characters.'
-    const saved = `${`${tag}${tag && '.'}${name}`} has been saved successfully.`
-    const delay = 1000 * 5
+    const project = `${`${tag}${tag && '.'}${name}`}`
+    const saved = `${project} has been saved successfully.`
 
     function forgiven() {
         setSubmit('#4c516d')
@@ -50,7 +49,7 @@ function Form({ value, draws, index, setValue, setIndex, onClick }: nav) {
     }
 
     function accept() {
-        update.push(`${tag}${tag && '.'}${name}`)
+        _value.push(project)
 
         setForm('white')
         setAlert(saved)
@@ -58,7 +57,7 @@ function Form({ value, draws, index, setValue, setIndex, onClick }: nav) {
         setBorder('none')
         setTag(tag)
 
-        setValue && setValue(update)
+        setValue && setValue(_value)
         value && setIndex && setIndex(value.length)
     }
 
@@ -94,13 +93,9 @@ function Form({ value, draws, index, setValue, setIndex, onClick }: nav) {
         style={style}
     />
 
-    return <form className='save' onSubmit={onSubmit} style={{ border, background: form }}>
+    return <form onSubmit={onSubmit} style={{ border, background: form }}>
         <Title />
-        <Svg
-            className='close'
-            draw={draws ? draws[1] : ''}
-            onClick={onClick || console.log}
-        />
+        {icons && icons[0]}
         <label>Name :</label>
         <input
             className='save'
@@ -111,7 +106,7 @@ function Form({ value, draws, index, setValue, setIndex, onClick }: nav) {
         <label>Tag :</label>
         <input
             className='save'
-            type="text"
+            type='text'
             value={tag}
             onChange={retag}
         />

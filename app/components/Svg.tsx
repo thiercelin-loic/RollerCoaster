@@ -1,5 +1,4 @@
-import { useState } from "react";
-import svg from "../types/svg";
+import svg from '../types/svg';
 
 function Svg({ className, draw, onClick }: svg) {
     const viewBox = '0 -960 960 960'

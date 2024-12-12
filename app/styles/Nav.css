@@ -4,14 +4,7 @@ nav {
     padding: 0 10;
 }
 
-svg.account {
-    position: absolute;
-    right: 100;
-    border-left: gray solid 1;
-}
-
-p.name,
-p.account {
+p.value {
     width: 100;
     padding: 4.75;
     position: absolute;
@@ -19,8 +12,4 @@ p.account {
     color: white;
     text-align: center;
     font-weight: lighter;
-}
-
-p.account {
-    right: 0;
 }
