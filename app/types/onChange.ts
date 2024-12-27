@@ -1,1 +1,0 @@
-export type event = { target: { value: string } }

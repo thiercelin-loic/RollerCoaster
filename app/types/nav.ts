@@ -1,13 +1,18 @@
-import onClick from "./onClick"
+import React, { ChangeEventHandler, FormEventHandler } from "react"
 
 interface nav {
-    value?: string,
+    alert?: string,
+    background?: string,
+    border?: string,
     icons?: React.JSX.Element[],
-    setValue?: (name: string[]) => void,
-    setIndex?: (index: number) => void,
-    onClick?: onClick,
-    undo?: onClick,
-    redo?: onClick,
+    labels?: React.JSX.Element[],
+    input?: string,
+    title?: string,
+    value?: string,
+
+    onChange?: ChangeEventHandler<HTMLInputElement>,
+    onClick?: React.MouseEventHandler
+    onSubmit?: FormEventHandler<HTMLFormElement>,
 }
 
 export default nav
