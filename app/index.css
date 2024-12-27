@@ -67,9 +67,15 @@ button,
 select,
 option {
   border-radius: 10;
-  border: darkgray solid 1;
+  border: none;
   padding: 10;
-  width: 100;
+  box-shadow: lightgray 10 10 10;
+  width: 425;
+  margin: 0 25;
+}
+
+select {
+  width: 445;
 }
 
 button:hover,
@@ -78,4 +84,21 @@ select:hover,
 option:hover {
   animation: lightness both 1s;
   cursor: pointer;
+}
+
+input[type=submit],
+input[type=button] {
+    box-shadow: none;
+    border: none;
+    background: #4C516D;
+    color: white;
+    position: absolute;
+    bottom: 25;
+    right: 0;
+    width: 100;
+}
+
+input[type=button] {
+    right: 110;
+    background: gray;
 }

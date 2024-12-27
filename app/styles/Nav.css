@@ -5,11 +5,11 @@ nav {
 }
 
 p.value {
-    width: 100;
+    width: 100%;
     padding: 4.75;
     position: absolute;
     display: inline;
     color: white;
-    text-align: center;
+    text-align: start;
     font-weight: lighter;
 }

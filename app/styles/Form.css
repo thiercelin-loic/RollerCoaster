@@ -1,5 +1,4 @@
 form {
-    background: white;
     position: absolute;
     width: 500;
     height: 50%;
@@ -8,40 +7,23 @@ form {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    overflow: hidden;
 }
 
-div.buttons {
-    position: absolute;
-    bottom: 25;
-    right: 20;
+label {
+    color: gray;
+}
+
+div.labels {
+    height: 300px;
+    overflow-y: scroll;
+    scrollbar-width: none;
 }
 
 svg.close {
     position: absolute;
     top: 25;
     right: 25;
-}
-
-input.save {
-    width: 425;
-    margin: 0 25;
-}
-
-button.cancel {
-    margin-left: 10px;
-}
-
-input[type=submit] {
-    border: none;
-    background: #4C516D;
-    color: white;
-    position: absolute;
-    bottom: 25;
-    right: 25;
-}
-
-select.save {
-    width: 445;
 }
 
 p.alert {
