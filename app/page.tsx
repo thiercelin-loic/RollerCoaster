@@ -12,141 +12,111 @@ import Form from './components/Form'
 import Nav from './components/Nav'
 import Svg from './components/Svg'
 
-import alerts from './constants/alerts.json'
-import borders from './constants/borders.json'
-import colors from './constants/colors.json'
-import format from './constants/format.json'
+import download from './libraries/download'
+import save from './libraries/save'
+import select from './libraries/select'
+import relaunch from './libraries/relaunch'
+import accept from './libraries/accept'
+import reject from './libraries/reject'
+import write from './libraries/write'
+import filter from './libraries/filter'
 
 import './styles/Form.css'
 import './styles/Nav.css'
 
 export default function Home() {
     const [alert, setAlert] = useState('')
-    const [background, setBackground] = useState(colors[2])
-    const [border, setBorder] = useState(borders[0])
+    const [background, setBackground] = useState('linear-gradient(#fff, #d3d3d3)')
+    const [border, setBorder] = useState('none')
     const [index, setIndex] = useState(0)
     const [local, setLocal] = useState(false)
-    const [saves, setSaves] = useState([true])
+    const [saves, setSaves] = useState([false])
     const [value, setValue] = useState('')
     const [works, setWorks] = useState([''])
 
-    const blob = new Blob()
-    const link = document.createElement('a')
-    const _saves = [...saves]
-    const _works = [...works]
-
-    function download() {
-        link.href = window.URL.createObjectURL(blob)
-        link.setAttribute('download', `${value}.${format}`)
-        link.click()
-        document.body.appendChild(link)
-    }
-
-    function save(value: boolean) {
-        _saves.push(value)
-        setSaves(_saves)
-        setLocal(true)
-        setIndex(saves.length)
-    }
-
-    function select(event: any) {
-        event.target.value == 'local'
-            ? setLocal(true)
-            : setLocal(false)
-    }
-
-    function relaunch() {
-        setAlert(alerts[0])
-        setBorder(borders[1])
-        setBackground(colors[0])
-    }
-
-    function accept() {
-        _works.push(value)
-        _saves.push(false)
-
-        setWorks(_works)
-        setAlert(`${value + alerts[2]}`)
-        setIndex(works.length + 1)
-        setBackground(colors[2])
-        setBorder(borders[0])
-
-        local && download()
-    }
-
-    function reject() {
-        setAlert(alerts[1])
-        setBorder(borders[1])
-        setBackground(colors[0])
-        setValue('')
-    }
-
-    function write(value: string) {
-        setValue(value)
-        setBorder(borders[0])
-        setBackground(colors[2])
-        setAlert('')
-    }
-
-    function filter(value: string) {
-        return value.match(/[a-zA-Z]+/g)
-    }
-
-    function appoint(event: { target: { value: string } }) {
-        event.target.value ? filter(event.target.value)
-            ? write(event.target.value)
-            : reject()
-            : relaunch()
-    }
-
-    function onSubmit(event: { preventDefault: () => void }) {
-        event.preventDefault()
-        value ? accept() : relaunch()
-    }
-
-    const icons = [
-        <Svg draw={account} />,
-        <Svg draw={disk} onClick={() => save(true)} />,
-        <Svg draw={next} onClick={() => setIndex(index - 1)} />,
-        <Svg draw={back} onClick={() => setIndex(index + 1)} />,
-    ]
-
-    const close = [<Svg
-        className='close'
-        draw={cross}
-        onClick={() => save(false)}
-    />]
-
-    const labels = [
-        <span><label>Name</label><input
-            value={value}
-            type='text'
-            onChange={appoint}
-        /></span>,
-        <span><label>Location</label>
-            <select onChange={select}>
-                <option value='local'>Local</option>
-                <option value='cloud'>Cloud</option>
-            </select>
-        </span>,
-    ]
-
-    return <div>
-        <header><Nav
-            alert={alert}
-            icons={icons}
-            value={works[index]}
-        /></header>{
+    return <div><header><Nav
+        alert={alert}
+        icons={[
+            <Svg draw={account} />,
+            <Svg draw={disk} onClick={() => save(
+                true,
+                [...saves],
+                setSaves,
+                setLocal,
+                setIndex
+            )} />,
+            <Svg draw={next} onClick={() => setIndex(index - 1)} />,
+            <Svg draw={back} onClick={() => setIndex(index + 1)} />,
+        ]}
+        value={works[index]}
+    /></header>{
             saves[index] && <Form
                 alert={alert}
                 background={background}
                 border={border}
-                icons={close}
-                labels={labels}
-                title={'Save this file'}
-                onClick={() => save(false)}
-                onSubmit={onSubmit}
-            />
-        }
+                icons={[<Svg
+                    className='close'
+                    draw={cross}
+                    onClick={() => save(
+                        false,
+                        [...saves],
+                        setSaves,
+                        setLocal,
+                        setIndex
+                    )}
+                />]}
+                labels={[<span><label>Name</label><input
+                    value={value}
+                    type='text'
+                    onChange={(event) => event.target.value
+                        ? filter(event.target.value) ? write(
+                            event.target.value,
+                            setValue,
+                            setBorder,
+                            setBackground,
+                            setAlert
+                        ) : reject(
+                            setAlert,
+                            setBorder,
+                            setBackground,
+                            setValue
+                        ) : relaunch(
+                            setAlert,
+                            setBorder,
+                            setBackground
+                        )}
+                /></span>, <span><label>Location</label>
+                    <select onChange={(event) => select(event, setLocal)}>{
+                        ['Local', 'Cloud'].map((option) =>
+                            <option>{option}</option>
+                        )}</select>
+                </span>]}
+                title='Save this file'
+                onClick={() => save(
+                    false,
+                    [...saves],
+                    setSaves,
+                    setLocal,
+                    setIndex
+                )}
+                onSubmit={(event) => {
+                    event.preventDefault()
+                    value ? (accept(
+                        value,
+                        [...works],
+                        [...saves],
+                        setWorks,
+                        setAlert,
+                        setIndex,
+                        setBackground,
+                        setBorder
+                    ), local && download(value)
+                    ) : relaunch(
+                        setAlert,
+                        setBorder,
+                        setBackground
+                    )
+                }}
+            />}
     </div>
 }
