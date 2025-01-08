@@ -1,11 +1,9 @@
-export default function save(
-    tasks: string[], 
+export default function login(
+    tasks: string[],
     setTasks: (tasks: string[]) => void,
-    setLocal: (local: boolean) => void,
     setIndex: (index: number) => void
 ) {
-    tasks.push('save')
+    tasks.push('login')
     setTasks(tasks)
-    setLocal(true)
     setIndex(tasks.length - 1)
 }

@@ -1,6 +1,6 @@
 import React, { ChangeEventHandler, FormEventHandler } from "react"
 
-interface nav {
+export default interface header {
     alert?: string,
     background?: string,
     border?: string,
@@ -14,5 +14,3 @@ interface nav {
     onClick?: React.MouseEventHandler
     onSubmit?: FormEventHandler<HTMLFormElement>,
 }
-
-export default nav

@@ -1,11 +1,11 @@
-import nav from '../types/nav'
+import header from '../types/header'
 
 export default function Form({
     alert, background,
     border,
     icons, labels, title,
     onClick, onSubmit
-}: nav) {
+}: header) {
     return <form onSubmit={onSubmit} style={{ background, border }}>
         <h2>{title}</h2>
         {icons && icons[0]}

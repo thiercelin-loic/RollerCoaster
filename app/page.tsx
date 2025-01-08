@@ -9,20 +9,21 @@ import disk from './icons/disk.json'
 import next from './icons/next.json'
 
 import Form from './components/Form'
-import Nav from './components/Nav'
+import Header from './components/Header'
 import Svg from './components/Svg'
 
+import init from './libraries/init'
 import download from './libraries/download'
 import save from './libraries/save'
-import select from './libraries/select'
 import relaunch from './libraries/relaunch'
 import accept from './libraries/accept'
 import reject from './libraries/reject'
 import write from './libraries/write'
 import filter from './libraries/filter'
+import login from './libraries/login'
 
 import './styles/Form.css'
-import './styles/Nav.css'
+import './styles/Header.css'
 
 export default function Home() {
     const [alert, setAlert] = useState('')
@@ -30,93 +31,130 @@ export default function Home() {
     const [border, setBorder] = useState('none')
     const [index, setIndex] = useState(0)
     const [local, setLocal] = useState(false)
-    const [saves, setSaves] = useState([false])
-    const [value, setValue] = useState('')
+    const [location, setLocation] = useState('/')
+    const [password, setPassword] = useState('')
+    const [tasks, setTasks] = useState([''])
+    const [user, setUser] = useState('')
+    const [name, setName] = useState('')
     const [works, setWorks] = useState([''])
 
-    return <div><header><Nav
-        alert={alert}
-        icons={[
-            <Svg draw={account} />,
-            <Svg draw={disk} onClick={() => save(
-                true,
-                [...saves],
-                setSaves,
-                setLocal,
-                setIndex
-            )} />,
-            <Svg draw={next} onClick={() => setIndex(index - 1)} />,
-            <Svg draw={back} onClick={() => setIndex(index + 1)} />,
-        ]}
-        value={works[index]}
-    /></header>{
-            saves[index] && <Form
+    const icons = [
+        <Svg draw={account} onClick={() => login(
+            tasks,
+            setTasks,
+            setIndex
+        )} />, <Svg draw={disk} onClick={() => save(
+            [...tasks],
+            setTasks,
+            setLocal,
+            setIndex
+        )} />,
+        <Svg draw={next} onClick={() => setIndex(index - 1)} />,
+        <Svg draw={back} onClick={() => setIndex(index + 1)} />,
+    ]
+
+    const close = [<Svg
+        className='close'
+        draw={cross}
+        onClick={() => init(
+            [...tasks],
+            setTasks,
+            setIndex
+        )} />]
+
+    const labels = [<span><label>{
+        tasks[index] == 'login' ? 'Username' : 'Name'
+    }</label><input
+            value={tasks[index] == 'login' ? user : name}
+            type='text'
+            onChange={(event) => event.target.value
+                ? filter(event.target.value) ? write(
+                    event.target.value,
+                    tasks[index] == 'login' ? setUser : setName,
+                    setBorder,
+                    setBackground,
+                    setAlert
+                ) : reject(
+                    setAlert,
+                    setBorder,
+                    setBackground,
+                    tasks[index] == 'login' ? setUser : setName,
+                ) : relaunch(
+                    setAlert,
+                    setBorder,
+                    setBackground
+                )}
+        /></span>, <span><label>{
+            tasks[index] == 'login' ? 'Password' : 'Location'
+        }</label>
+        <input
+            value={tasks[index] == 'login' ? password : location}
+            type={tasks[index] == 'login' ? 'password' : 'text'}
+            onChange={(event) => event.target.value
+                ? filter(event.target.value) ? write(
+                    event.target.value,
+                    tasks[index] == 'login' ? setPassword : setLocation,
+                    setBorder,
+                    setBackground,
+                    setAlert
+                ) : reject(
+                    setAlert,
+                    setBorder,
+                    setBackground,
+                    tasks[index] == 'login' ? setPassword : setLocation,
+                ) : relaunch(
+                    setAlert,
+                    setBorder,
+                    setBackground
+                )}
+        /></span>]
+
+    return <div>
+        <Header
+            alert={alert}
+            icons={icons}
+            value={works[index]}
+        />{
+            tasks[index] && <Form
                 alert={alert}
                 background={background}
                 border={border}
-                icons={[<Svg
-                    className='close'
-                    draw={cross}
-                    onClick={() => save(
-                        false,
-                        [...saves],
-                        setSaves,
-                        setLocal,
-                        setIndex
-                    )}
-                />]}
-                labels={[<span><label>Name</label><input
-                    value={value}
-                    type='text'
-                    onChange={(event) => event.target.value
-                        ? filter(event.target.value) ? write(
-                            event.target.value,
-                            setValue,
-                            setBorder,
-                            setBackground,
-                            setAlert
-                        ) : reject(
-                            setAlert,
-                            setBorder,
-                            setBackground,
-                            setValue
-                        ) : relaunch(
-                            setAlert,
-                            setBorder,
-                            setBackground
-                        )}
-                /></span>, <span><label>Location</label>
-                    <select onChange={(event) => select(event, setLocal)}>{
-                        ['Local', 'Cloud'].map((option) =>
-                            <option>{option}</option>
-                        )}</select>
-                </span>]}
-                title='Save this file'
-                onClick={() => save(
-                    false,
-                    [...saves],
-                    setSaves,
-                    setLocal,
+                icons={close}
+                labels={labels}
+                title={tasks[index] == 'login'
+                    ? 'Login'
+                    : 'Save this file'
+                }
+                onClick={() => init(
+                    [...tasks],
+                    setTasks,
                     setIndex
                 )}
-                onSubmit={(event) => {
+                onSubmit={(event: any) => {
                     event.preventDefault()
-                    value ? (accept(
-                        value,
+                    tasks[index] == 'save' ? name ? (accept(
+                        name,
                         [...works],
-                        [...saves],
                         setWorks,
                         setAlert,
                         setIndex,
                         setBackground,
                         setBorder
-                    ), local && download(value)
-                    ) : relaunch(
+                    ), local && download(name), init(
+                        [...tasks],
+                        setTasks,
+                        setIndex
+                    )) : relaunch(
                         setAlert,
                         setBorder,
                         setBackground
+                    ) : user && password && init(
+                        tasks,
+                        setTasks,
+                        setIndex
                     )
                 }}
-            />}
+            />
+        }
     </div>
 }
