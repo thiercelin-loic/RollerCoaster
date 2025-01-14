@@ -59,7 +59,7 @@ export default function Home() {
     const onChange = (value: value, position: position) => value
         ? filter(value) ? write(
             value,
-            marker(position, tasks[index], inputs),
+            marker(inputs, position, tasks[index]),
             setBorder,
             setBackground,
             setAlert
@@ -89,29 +89,29 @@ export default function Home() {
             setWorks
         ), local && download(name, states), init(
             [...tasks],
-            setTasks,
-            setIndex
+            setIndex,
+            setTasks
         )) : relaunch(
             setAlert,
             setBorder,
             setBackground
         ) : user && password && init(
-            tasks,
-            setTasks,
-            setIndex
+            [...tasks],
+            setIndex,
+            setTasks
         )
     }
 
     const icons = [
         <Svg draw={account} onClick={() => login(
-            tasks,
-            setTasks,
-            setIndex
+            [...tasks],
+            setIndex,
+            setTasks
         )} />, <Svg draw={disk} onClick={() => save(
             [...tasks],
-            setTasks,
+            setIndex,
             setLocal,
-            setIndex
+            setTasks
         )} />, <Svg
             draw={next}
             onClick={() => setIndex(index - 1)}
@@ -126,20 +126,20 @@ export default function Home() {
         draw={cross}
         onClick={() => init(
             [...tasks],
-            setTasks,
-            setIndex
+            setIndex,
+            setTasks
         )} />]
 
     const labels = [<span>
-        <label>{label(tasks[index], 0)}</label>
+        <label>{label(0, tasks[index])}</label>
         <input
-            value={reader(0, tasks[index], outputs)}
+            value={reader(outputs, 0, tasks[index])}
             type='text'
             onChange={(event) => onChange(event.target.value, 0)}
         /></span>, <span>
-        <label>{label(tasks[index], 1)}</label>
+        <label>{label(1, tasks[index])}</label>
         <input
-            value={reader(1, tasks[index], outputs)}
+            value={reader(outputs, 1, tasks[index])}
             type={decorate(tasks[index])}
             onChange={(event) => onChange(event.target.value, 1)}
         />
@@ -157,8 +157,8 @@ export default function Home() {
                 border={border}
                 icons={close}
                 labels={labels}
-                title={() => appoint(tasks[index])}
-                onClick={() => init([...tasks], setTasks, setIndex)}
+                title={appoint(tasks[index])}
+                onClick={() => init([...tasks], setIndex, setTasks)}
                 onSubmit={onSubmit}
             />
         }

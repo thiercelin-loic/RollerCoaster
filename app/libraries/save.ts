@@ -1,11 +1,11 @@
 export default function save(
     tasks: string[], 
-    setTasks: (tasks: string[]) => void,
+    setIndex: (index: number) => void,
     setLocal: (local: boolean) => void,
-    setIndex: (index: number) => void
+    setTasks: (tasks: string[]) => void,
 ) {
     tasks.push('save')
-    setTasks(tasks)
-    setLocal(true)
     setIndex(tasks.length - 1)
+    setLocal(true)
+    setTasks(tasks)
 }

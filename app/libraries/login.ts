@@ -1,7 +1,7 @@
 export default function login(
     tasks: string[],
-    setTasks: (tasks: string[]) => void,
-    setIndex: (index: number) => void
+    setIndex: (index: number) => void,
+    setTasks: (tasks: string[]) => void
 ) {
     tasks.push('login')
     setTasks(tasks)

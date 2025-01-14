@@ -2,8 +2,8 @@ import header from '../types/header'
 
 export default function Form({
     alert, background,
-    border,
-    icons, labels, title,
+    border, icons, 
+    labels, title,
     onClick, onSubmit
 }: header) {
     return <form onSubmit={onSubmit} style={{ background, border }}>

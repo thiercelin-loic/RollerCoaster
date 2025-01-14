@@ -1,7 +1,7 @@
 export default function init(
     tasks: string[],
-    setTasks: (tasks: string[]) => void,
-    setIndex: (index: number) => void
+    setIndex: (index: number) => void,
+    setTasks: (tasks: string[]) => void
 ) {
     tasks.push('main')
     setTasks(tasks)
