@@ -38,15 +38,14 @@ export default function Home() {
     const [border, setBorder] = useState('none')
     const [index, setIndex] = useState(0)
     const [local, setLocal] = useState(false)
-    const [location, setLocation] = useState('/')
     const [name, setName] = useState('')
     const [password, setPassword] = useState('')
     const [tasks, setTasks] = useState([''])
     const [user, setUser] = useState('')
     const [works, setWorks] = useState([''])
 
-    const inputs = [setLocation, setName, setPassword, setUser]
-    const outputs = [location, name, password, user]
+    const inputs = [setName, setPassword, setUser]
+    const outputs = [name, password, user]
 
     const states = JSON.stringify({
         alert, background,
@@ -67,9 +66,7 @@ export default function Home() {
             setAlert,
             setBorder,
             setBackground,
-            tasks[index] == 'login'
-                ? setPassword
-                : setLocation,
+            setPassword
         ) : relaunch(
             setAlert,
             setBorder,
@@ -137,7 +134,10 @@ export default function Home() {
             type='text'
             onChange={(event) => onChange(event.target.value, 0)}
         /></span>, <span>
-        <label>{label(1, tasks[index])}</label>
+        <label>{
+            decorate(tasks[index]) != 'hidden'
+            && label(1, tasks[index])
+        }</label>
         <input
             value={reader(outputs, 1, tasks[index])}
             type={decorate(tasks[index])}

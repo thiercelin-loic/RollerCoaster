@@ -1,3 +1,3 @@
 export default function decorate(task: string) {
-    return task == 'login' ? 'password' : 'text'
+    return task == 'login' ? 'password' : 'hidden'
 }
