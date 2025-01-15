@@ -5,9 +5,9 @@ export default function marker(
 ) {
     return position == 0
         ? task == 'login'
-            ? inputs[0]
+            ? inputs[3]
             : inputs[1]
         : task == 'login'
             ? inputs[2]
-            : inputs[3]
+            : inputs[0]
 }

@@ -36,6 +36,7 @@ export default function Home() {
     const [alert, setAlert] = useState('')
     const [background, setBackground] = useState('linear-gradient(#fff, #d3d3d3)')
     const [border, setBorder] = useState('none')
+    const [hidden, setHidden] = useState('hidden')
     const [index, setIndex] = useState(0)
     const [local, setLocal] = useState(false)
     const [name, setName] = useState('')
@@ -44,8 +45,8 @@ export default function Home() {
     const [user, setUser] = useState('')
     const [works, setWorks] = useState([''])
 
-    const inputs = [setName, setPassword, setUser]
-    const outputs = [name, password, user]
+    const inputs = [setHidden, setName, setPassword, setUser]
+    const outputs = [hidden, name, password, user]
 
     const states = JSON.stringify({
         alert, background,
@@ -58,14 +59,14 @@ export default function Home() {
     const onChange = (value: value, position: position) => value
         ? filter(value) ? write(
             value,
-            marker(inputs, position, tasks[index]),
-            setBorder,
+            setAlert,
             setBackground,
-            setAlert
+            setBorder,
+            marker(inputs, position, tasks[index]),
         ) : reject(
             setAlert,
-            setBorder,
             setBackground,
+            setBorder,
             setPassword
         ) : relaunch(
             setAlert,
@@ -90,8 +91,8 @@ export default function Home() {
             setTasks
         )) : relaunch(
             setAlert,
-            setBorder,
-            setBackground
+            setBackground,
+            setBorder
         ) : user && password && init(
             [...tasks],
             setIndex,

@@ -5,9 +5,9 @@ export default function reader(
 ) {
     return position == 0
         ? task == 'login'
-            ? outputs[0]
+            ? outputs[3]
             : outputs[1]
         : task == 'login'
             ? outputs[2]
-            : outputs[3]
+            : outputs[0]
 }
