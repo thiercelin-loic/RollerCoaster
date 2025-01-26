@@ -21,14 +21,11 @@ import init from './libraries/init'
 import label from './libraries/label'
 import login from './libraries/login'
 import marker from './libraries/marker'
-import ping from './libraries/ping'
 import reader from './libraries/reader'
 import reject from './libraries/reject'
 import relaunch from './libraries/relaunch'
 import save from './libraries/save'
 import write from './libraries/write'
-
-import useNetwork from './hooks/useNetwork'
 
 import type { position, value } from './types/onChange'
 
@@ -49,7 +46,6 @@ export default function Home() {
     const [works, setWorks] = useState([''])
 
     const inputs = [setHidden, setName, setPassword, setUser]
-    const network = useNetwork()
     const outputs = [hidden, name, password, user]
 
     const states = JSON.stringify({
@@ -149,8 +145,6 @@ export default function Home() {
             onChange={(event) => onChange(event.target.value, 1)}
         />
     </span>]
-
-    setTimeout(() => ping(network, setAlert), 1000)
 
     return <div>
         <Header
