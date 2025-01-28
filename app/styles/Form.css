@@ -24,6 +24,7 @@ svg.close {
     position: absolute;
     top: 25;
     right: 25;
+    fill: gray;
 }
 
 p.alert {
