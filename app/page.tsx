@@ -4,9 +4,21 @@ import React, { useState } from 'react'
 
 import account from './icons/account.json'
 import back from './icons/back.json'
+import bug from './icons/bug.json'
+import exports from './icons/export.json'
+import functions from './icons/function.json'
+import copy from './icons/copy.json'
+import chart from './icons/chart'
 import cross from './icons/cross.json'
+import cut from './icons/cut.json'
+import database from './icons/database.json'
 import disk from './icons/disk.json'
+import learn from './icons/learn.json'
 import next from './icons/next.json'
+import paint from './icons/paint.json'
+import past from './icons/past.json'
+import publish from './icons/publish.json'
+import terminal from './icons/terminal.json'
 
 import Form from './components/Form'
 import Header from './components/Header'
@@ -100,7 +112,7 @@ export default function Home() {
         )
     }
 
-    const icons = [
+    const surface = [
         <Svg draw={account} onClick={() => login(
             [...tasks],
             setIndex,
@@ -116,7 +128,56 @@ export default function Home() {
         />, <Svg
             draw={back}
             onClick={() => setIndex(index + 1)}
-        />,
+        />
+    ]
+
+    const tools = [
+        <span>
+            <small>past</small>
+            <Svg className='tools' draw={past} />
+        </span>, <span>
+            <small>cut</small>
+            <Svg className='tools' draw={cut} />
+        </span>, <span>
+            <small>copy</small>
+            <Svg className='tools' draw={copy} />
+        </span>, <span>
+            <small>data</small>
+            <Svg className='tools' draw={database} />
+        </span>,
+        <span>
+            <small>functions</small>
+            <Svg className='tools' draw={functions} />
+        </span>,
+        <span>
+            <small>scripts</small>
+            <Svg className='tools' draw={terminal} />
+        </span>,
+        <span>
+            <small>charts</small>
+            <Svg className='tools' draw={chart} />
+        </span>,
+        <span>
+            <small>styles</small>
+            <Svg className='tools' draw={paint} />
+        </span>,
+        <span>
+            <small>export</small>
+            <Svg className='tools' draw={exports} />
+        </span>,
+        <span>
+            <small>publish</small>
+            <Svg className='tools' draw={publish} />
+        </span>,
+        <span>
+            <small>learn</small>
+            <Svg className='tools' draw={learn} />
+        </span>,
+
+        <span>
+            <small>report</small>
+            <Svg className='tools' draw={bug} />
+        </span>
     ]
 
     const close = [<Svg
@@ -149,8 +210,11 @@ export default function Home() {
     return <div>
         <Header
             alert={alert}
-            icons={icons}
+            icons={surface}
             value={works[index]}
+        /><Header
+            className='tools'
+            icons={tools}
         />{
             tasks[index] && <Form
                 alert={alert}

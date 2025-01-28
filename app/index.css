@@ -1,12 +1,13 @@
 @keyframes darkness {
   to {
-    background: #333;
+    background: #33333375;
   }
 }
 
 @keyframes lightness {
   to {
-    border: solid orangered 1;
+    fill: orangered;
+    background: #77777727;
   }
 }
 
@@ -28,20 +29,29 @@ body {
 
 svg {
   width: 25;
-  height: 25;
   padding: 2.25 10;
+  border-radius: 10;
   display: inline-flex;
   cursor: pointer;
-  fill: white;
 }
 
 svg:hover {
   animation: darkness 0.25s both;
 }
 
+svg.tools:hover {
+  animation: lightness 0.25s both;
+}
+
 svg.close {
   filter: invert(1);
   border-radius: 10;
+}
+
+svg.tools {
+  width: 35;
+  margin: 10 0 0 50;
+  padding: 1 10;
 }
 
 h1,
@@ -77,7 +87,6 @@ button:hover,
 input:hover,
 select:hover,
 option:hover {
-  animation: lightness both 1s;
   cursor: pointer;
 }
 
@@ -96,4 +105,17 @@ input[type=button] {
 input[type=button] {
   right: 110;
   background: gray;
+}
+
+small {
+  position: absolute;
+  top: 80;
+  width: 155;
+  text-align: center;
+  text-transform: capitalize;
+  color: #4c516d;
+}
+
+small:hover {
+  cursor: pointer;
 }

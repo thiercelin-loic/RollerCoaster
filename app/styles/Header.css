@@ -3,9 +3,17 @@ header {
     height: 30;
     padding: 0 10;
     box-shadow: gray 10 10 10;
+    fill: white;
 }
 
-p.value {
+header.tools {
+    height: 75;
+    fill: #4C516D;
+    background: radial-gradient(white, lightgray);
+    padding: 0 100;
+}
+
+p#value {
     width: 100%;
     padding: 4.75;
     position: absolute;

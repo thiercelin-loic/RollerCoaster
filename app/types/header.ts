@@ -4,6 +4,7 @@ export default interface header {
     alert?: string,
     background?: string,
     border?: string,
+    className?: string,
     icons?: React.JSX.Element[],
     labels?: React.JSX.Element[],
     input?: string,
