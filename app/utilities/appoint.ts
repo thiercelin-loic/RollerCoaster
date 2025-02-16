@@ -5,5 +5,9 @@ export default function appoint(task: string) {
             ? 'Save this file'
             : task == 'data'
                 ? 'Insert data'
-                : 'Insert a function'
+                : task == 'function'
+                ? 'Insert a function'
+                : task == 'script'
+                ? 'Insert a script'
+                : 'Charts visualisations'
 }

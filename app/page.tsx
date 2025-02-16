@@ -147,16 +147,19 @@ export default function Home() {
             <small>data</small>
             <Svg className='tools' draw={database} />
         </span>, <span onClick={() => transition(
-            'functions', [...tasks], setIndex, setTasks
+            'function', [...tasks], setIndex, setTasks
         )}>
             <small>functions</small>
             <Svg className='tools' draw={fx} />
-        </span>,
-        <span>
+        </span>, <span onClick={() => transition(
+            'script', [...tasks], setIndex, setTasks
+        )}>
             <small>scripts</small>
             <Svg className='tools' draw={terminal} />
         </span>,
-        <span>
+        <span onClick={() => transition(
+            'chart', [...tasks], setIndex, setTasks
+        )}>
             <small>charts</small>
             <Svg className='tools' draw={chart} />
         </span>,
@@ -206,10 +209,28 @@ export default function Home() {
         <option>MATCH</option>
     </select>
 
-    const labels = [<span>{
-        tasks[index] == 'functions' && functions
-    }
-        <label>{label(0, tasks[index])}</label>
+    const languages = <select>
+        <option>Python</option>
+        <option>C</option>
+    </select>
+
+    const charts = <select>
+        <option>Histogram</option>
+        <option>Box Plot</option>
+        <option>Bar Chart</option>
+        <option>Pie Chart</option>
+        <option>Density Plot</option>
+    </select>
+
+    const labels = [<span>
+        {tasks[index] == 'function' && functions}
+        {tasks[index] == 'script' && languages}
+        {tasks[index] == 'chart' && charts}
+        <label>{
+            decorate(0, tasks[index])
+            !== 'hidden'
+            && label(1, tasks[index])
+        }</label>
         <input type={decorate(0, tasks[index])} value={
             decorate(0, tasks[index])
                 === 'file'
@@ -226,7 +247,8 @@ export default function Home() {
             && label(1, tasks[index])
         }</label>
         <input type={decorate(1, tasks[index])} value={
-            decorate(0, tasks[index]) === 'file'
+            decorate(0, tasks[index])
+                === 'file'
                 ? undefined
                 : reader(outputs, 1, tasks[index])
         } onChange={(event) =>

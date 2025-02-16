@@ -3,7 +3,7 @@ export default function init(
     setIndex: (index: number) => void,
     setTasks: (tasks: string[]) => void
 ) {
-    tasks.push('main')
+    tasks.push('')
     setTasks(tasks)
     setIndex(tasks.length + 1)
 }
