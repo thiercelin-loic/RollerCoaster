@@ -61,9 +61,9 @@ export default function Home() {
 
     const states = JSON.stringify({
         alert, background,
-        border, index, 
-        location, name, 
-        password, tasks, 
+        border, index,
+        location, name,
+        password, tasks,
         user, works
     })
 
@@ -141,11 +141,12 @@ export default function Home() {
         </span>, <span>
             <small>copy</small>
             <Svg className='tools' draw={copy} />
-        </span>, <span>
+        </span>, <span onClick={() => transition(
+            'data', [...tasks], setIndex, setTasks
+        )}>
             <small>data</small>
             <Svg className='tools' draw={database} />
-        </span>,
-        <span>
+        </span>, <span>
             <small>functions</small>
             <Svg className='tools' draw={functions} />
         </span>,
@@ -191,20 +192,28 @@ export default function Home() {
 
     const labels = [<span>
         <label>{label(0, tasks[index])}</label>
-        <input
-            value={reader(outputs, 0, tasks[index])}
-            type='text'
-            onChange={(event) => onChange(event.target.value, 0)}
-        /></span>, <span>
+        <input type={decorate(0, tasks[index])} value={
+            decorate(0, tasks[index])
+                === 'file'
+                ? undefined
+                : reader(outputs, 0, tasks[index])
+        } onChange={(event) =>
+            onChange(event.target.value, 0)
+        } />
+    </span>,
+    <span>
         <label>{
-            decorate(tasks[index]) != 'hidden'
+            decorate(1, tasks[index])
+            !== 'hidden'
             && label(1, tasks[index])
         }</label>
-        <input
-            value={reader(outputs, 1, tasks[index])}
-            type={decorate(tasks[index])}
-            onChange={(event) => onChange(event.target.value, 1)}
-        />
+        <input type={decorate(1, tasks[index])} value={
+            decorate(0, tasks[index]) === 'file'
+                ? undefined
+                : reader(outputs, 1, tasks[index])
+        } onChange={(event) =>
+            onChange(event.target.value, 1)
+        } />
     </span>]
 
     return <div>
