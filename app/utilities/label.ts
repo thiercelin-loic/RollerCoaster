@@ -1,6 +1,13 @@
-export default function label(position: 0 | 1, task: string) {
-    return position == 0
-        ? task == 'login' ? 'Username'
-            : task == 'save' ? 'Name' : 'File'
-        : task == 'login' ? 'Password' : 'Location'
+export default function label(index: 0 | 1, task: string) {
+    return index == 0
+        ? task == 'login'
+            ? 'Username'
+            : task == 'save'
+                ? 'Name'
+                : task == 'data'
+                    ? 'File'
+                    : 'Number A'
+        : task == 'login'
+            ? 'Password'
+            : 'Number B'
 }

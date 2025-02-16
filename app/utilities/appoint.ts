@@ -3,5 +3,7 @@ export default function appoint(task: string) {
         ? 'Login'
         : task == 'save'
             ? 'Save this file'
-            : 'Insert Data'
+            : task == 'data'
+                ? 'Insert data'
+                : 'Insert a function'
 }

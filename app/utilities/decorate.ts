@@ -2,8 +2,12 @@ export default function render(index: number, task: string) {
     return !index
         ? task === 'login' || task === 'save'
             ? 'text'
-            : 'file'
+            : task === 'data'
+                ? 'file'
+                : 'number'
         : task === 'login'
             ? 'password'
-            : 'hidden'
+            : task === 'save' || task === 'data'
+            ? 'hidden'
+            : 'number'
 }

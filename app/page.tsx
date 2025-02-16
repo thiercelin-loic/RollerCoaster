@@ -6,7 +6,7 @@ import account from './icons/account.json'
 import back from './icons/back.json'
 import bug from './icons/bug.json'
 import exports from './icons/export.json'
-import functions from './icons/function.json'
+import fx from './icons/fx.json'
 import copy from './icons/copy.json'
 import chart from './icons/chart.json'
 import cross from './icons/cross.json'
@@ -146,9 +146,11 @@ export default function Home() {
         )}>
             <small>data</small>
             <Svg className='tools' draw={database} />
-        </span>, <span>
+        </span>, <span onClick={() => transition(
+            'functions', [...tasks], setIndex, setTasks
+        )}>
             <small>functions</small>
-            <Svg className='tools' draw={functions} />
+            <Svg className='tools' draw={fx} />
         </span>,
         <span>
             <small>scripts</small>
@@ -190,7 +192,23 @@ export default function Home() {
             setTasks
         )} />]
 
-    const labels = [<span>
+    const functions = <select>
+        <option>SUM</option>
+        <option>AVERAGE</option>
+        <option>MAX</option>
+        <option>MIN</option>
+        <option>COUNT</option>
+        <option>CONTA</option>
+        <option>IF</option>
+        <option>VLOOKUP</option>
+        <option>HLOOKUP</option>
+        <option>INDEX</option>
+        <option>MATCH</option>
+    </select>
+
+    const labels = [<span>{
+        tasks[index] == 'functions' && functions
+    }
         <label>{label(0, tasks[index])}</label>
         <input type={decorate(0, tasks[index])} value={
             decorate(0, tasks[index])
