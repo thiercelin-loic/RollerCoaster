@@ -27,10 +27,8 @@ import Svg from './components/Svg'
 import accept from './handlers/accept'
 import download from './handlers/download'
 import init from './handlers/init'
-import login from './handlers/login'
 import reject from './handlers/reject'
 import relaunch from './handlers/relaunch'
-import save from './handlers/save'
 import write from './handlers/write'
 
 import appoint from './utilities/appoint'
@@ -39,6 +37,7 @@ import filter from './utilities/filter'
 import label from './utilities/label'
 import marker from './utilities/marker'
 import reader from './utilities/reader'
+import transition from './utilities/transition'
 
 import type { position, value } from './types/onChange'
 
@@ -51,7 +50,6 @@ export default function Home() {
     const [border, setBorder] = useState('none')
     const [hidden, setHidden] = useState('hidden')
     const [index, setIndex] = useState(0)
-    const [local, setLocal] = useState(false)
     const [name, setName] = useState('')
     const [password, setPassword] = useState('')
     const [tasks, setTasks] = useState([''])
@@ -63,10 +61,10 @@ export default function Home() {
 
     const states = JSON.stringify({
         alert, background,
-        border, index,
-        local, location,
-        name, password,
-        tasks, user, works
+        border, index, 
+        location, name, 
+        password, tasks, 
+        user, works
     })
 
     const onChange = (value: value, position: position) => value
@@ -98,7 +96,7 @@ export default function Home() {
             setBorder,
             setIndex,
             setWorks
-        ), local && download(name, states), init(
+        ), download(name, states), init(
             [...tasks],
             setIndex,
             setTasks
@@ -114,14 +112,15 @@ export default function Home() {
     }
 
     const surface = [
-        <Svg draw={account} onClick={() => login(
+        <Svg draw={account} onClick={() => transition(
+            'login',
             [...tasks],
             setIndex,
             setTasks
-        )} />, <Svg draw={disk} onClick={() => save(
+        )} />, <Svg draw={disk} onClick={() => transition(
+            'save',
             [...tasks],
             setIndex,
-            setLocal,
             setTasks
         )} />, <Svg
             draw={next}
