@@ -16,6 +16,11 @@
   src: url('./fonts/Assistant.ttf');
 }
 
+@font-face {
+  font-family: 'console';
+  src: url('./fonts/Console.ttf');
+}
+
 * {
   font-family: 'Assistant';
   margin: 0%;
@@ -74,9 +79,10 @@ option {
   border-radius: 10;
   border: none;
   padding: 10;
-  box-shadow: lightgray 10 10 10;
+  box-shadow: lightgray 5 5 5;
   width: 425;
   margin: 0 25;
+  color: orangered;
 }
 
 select {

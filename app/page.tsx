@@ -20,9 +20,17 @@ import past from './icons/past.json'
 import publish from './icons/publish.json'
 import terminal from './icons/terminal.json'
 
+import Chart from './components/Chart'
 import Form from './components/Form'
 import Header from './components/Header'
+import Select from './components/Select'
 import Svg from './components/Svg'
+
+import x from './constants/x.json'
+import charts from './constants/charts.json'
+import functions from './constants/functions.json'
+import scripts from './constants/scripts.json'
+import styles from './constants/styles.json'
 
 import accept from './handlers/accept'
 import download from './handlers/download'
@@ -41,12 +49,12 @@ import transition from './utilities/transition'
 
 import type { position, value } from './types/onChange'
 
+import './styles/Chart.css'
 import './styles/Form.css'
 import './styles/Header.css'
 
 export default function Home() {
     const [alert, setAlert] = useState('')
-    const [background, setBackground] = useState('linear-gradient(#fff, #d3d3d3)')
     const [border, setBorder] = useState('none')
     const [hidden, setHidden] = useState('hidden')
     const [index, setIndex] = useState(0)
@@ -60,9 +68,8 @@ export default function Home() {
     const outputs = [hidden, name, password, user]
 
     const states = JSON.stringify({
-        alert, background,
-        border, index,
-        location, name,
+        alert, border,
+        index, name,
         password, tasks,
         user, works
     })
@@ -71,19 +78,10 @@ export default function Home() {
         ? filter(value) ? write(
             value,
             setAlert,
-            setBackground,
             setBorder,
             marker(inputs, position, tasks[index]),
-        ) : reject(
-            setAlert,
-            setBackground,
-            setBorder,
-            setPassword
-        ) : relaunch(
-            setAlert,
-            setBorder,
-            setBackground
-        )
+        ) : reject(setAlert, setBorder, setPassword)
+        : relaunch(setAlert, setBorder,)
 
     const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
@@ -92,7 +90,6 @@ export default function Home() {
             name,
             [...works],
             setAlert,
-            setBackground,
             setBorder,
             setIndex,
             setWorks
@@ -102,7 +99,6 @@ export default function Home() {
             setTasks
         )) : relaunch(
             setAlert,
-            setBackground,
             setBorder
         ) : user && password && init(
             [...tasks],
@@ -163,7 +159,9 @@ export default function Home() {
             <small>charts</small>
             <Svg className='tools' draw={chart} />
         </span>,
-        <span>
+        <span onClick={() => transition(
+            'style', [...tasks], setIndex, setTasks
+        )}>
             <small>styles</small>
             <Svg className='tools' draw={paint} />
         </span>,
@@ -195,65 +193,54 @@ export default function Home() {
             setTasks
         )} />]
 
-    const functions = <select>
-        <option>SUM</option>
-        <option>AVERAGE</option>
-        <option>MAX</option>
-        <option>MIN</option>
-        <option>COUNT</option>
-        <option>CONTA</option>
-        <option>IF</option>
-        <option>VLOOKUP</option>
-        <option>HLOOKUP</option>
-        <option>INDEX</option>
-        <option>MATCH</option>
-    </select>
-
-    const languages = <select>
-        <option>Python</option>
-        <option>C</option>
-    </select>
-
-    const charts = <select>
-        <option>Histogram</option>
-        <option>Box Plot</option>
-        <option>Bar Chart</option>
-        <option>Pie Chart</option>
-        <option>Density Plot</option>
-    </select>
-
     const labels = [<span>
-        {tasks[index] == 'function' && functions}
-        {tasks[index] == 'script' && languages}
-        {tasks[index] == 'chart' && charts}
-        <label>{
+        {
+            tasks[index] == 'chart'
+            && <Select category={tasks[index]} options={charts} />
+        }{
+            tasks[index] == 'chart'
+            && <div className='preview'><Chart x={x} /></div>
+        }{
+            tasks[index] == 'function'
+            && <Select category={tasks[index]} options={functions} />
+        }{
+            tasks[index] == 'script'
+            && <Select category={'language'} options={scripts} />
+        }{
+            tasks[index] == 'style'
+            && <Select category={tasks[index]} options={styles} />
+        }<label>{
             decorate(0, tasks[index])
             !== 'hidden'
-            && label(1, tasks[index])
-        }</label>
-        <input type={decorate(0, tasks[index])} value={
-            decorate(0, tasks[index])
-                === 'file'
-                ? undefined
-                : reader(outputs, 0, tasks[index])
-        } onChange={(event) =>
-            onChange(event.target.value, 0)
-        } />
-    </span>,
-    <span>
+            && label(0, tasks[index])
+        }</label><input
+            className={tasks[index]}
+            type={decorate(0, tasks[index])}
+            value={
+                decorate(0, tasks[index])
+                    === 'file'
+                    ? undefined
+                    : reader(outputs, 0, tasks[index])
+            } onChange={(event) => onChange(
+                event.target.value,
+                0
+            )}
+        />
+    </span>, <span>
         <label>{
             decorate(1, tasks[index])
             !== 'hidden'
             && label(1, tasks[index])
         }</label>
-        <input type={decorate(1, tasks[index])} value={
-            decorate(0, tasks[index])
-                === 'file'
-                ? undefined
-                : reader(outputs, 1, tasks[index])
-        } onChange={(event) =>
-            onChange(event.target.value, 1)
-        } />
+        <input className={tasks[index]}
+            type={decorate(1, tasks[index])} value={
+                decorate(1, tasks[index])
+                    === 'file'
+                    ? undefined
+                    : reader(outputs, 1, tasks[index])
+            } onChange={(event) =>
+                onChange(event.target.value, 1)
+            } />
     </span>]
 
     return <div>
@@ -267,8 +254,8 @@ export default function Home() {
         />{
             tasks[index] && <Form
                 alert={alert}
-                background={background}
                 border={border}
+                className={tasks[index]}
                 icons={close}
                 labels={labels}
                 title={appoint(tasks[index])}
