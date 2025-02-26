@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { ChangeEvent, ChangeEventHandler, useState } from 'react'
 
 import account from './icons/account.json'
 import back from './icons/back.json'
@@ -28,6 +28,7 @@ import Svg from './components/Svg'
 
 import x from './constants/x.json'
 import charts from './constants/charts.json'
+import contents from './constants/contents.json'
 import functions from './constants/functions.json'
 import scripts from './constants/scripts.json'
 import styles from './constants/styles.json'
@@ -47,20 +48,21 @@ import marker from './utilities/marker'
 import reader from './utilities/reader'
 import transition from './utilities/transition'
 
-import type { position, value } from './types/onChange'
-
 import './styles/Chart.css'
 import './styles/Form.css'
 import './styles/Header.css'
 
 export default function Home() {
     const [alert, setAlert] = useState('')
-    const [border, setBorder] = useState('none')
+    const [background, setBackground] = useState('')
+    const [content, setContent] = useState('')
+    const [file, setFile] = useState('')
     const [hidden, setHidden] = useState('hidden')
     const [index, setIndex] = useState(0)
     const [name, setName] = useState('')
     const [password, setPassword] = useState('')
     const [tasks, setTasks] = useState([''])
+    const [type, setType] = useState('')
     const [user, setUser] = useState('')
     const [works, setWorks] = useState([''])
 
@@ -68,29 +70,52 @@ export default function Home() {
     const outputs = [hidden, name, password, user]
 
     const states = JSON.stringify({
-        alert, border,
-        index, name,
+        alert, index, name,
         password, tasks,
         user, works
     })
 
-    const onChange = (value: value, position: position) => value
-        ? filter(value) ? write(
-            value,
+    const onChange = (event: ChangeEvent<HTMLInputElement>, position: 0 | 1) => {
+        event.target.value ? filter(event.target.value) ? write(
+            event.target.value,
             setAlert,
-            setBorder,
-            marker(inputs, position, tasks[index]),
-        ) : reject(setAlert, setBorder, setPassword)
-        : relaunch(setAlert, setBorder,)
+            setBackground,
+            marker(inputs, position, tasks[index])
+        ) : reject(setAlert, setBackground, setPassword)
+            : relaunch(setAlert, setBackground)
+
+        event.target.files
+            ?.item(0)
+            ?.name ? (
+            write(
+                event.target.files[0]?.name || '',
+                setAlert,
+                setBackground,
+                setFile
+            ), write(
+                event.target.files[0]?.type || '',
+                setAlert,
+                setBackground,
+                setContent
+            )) : reject(
+                setAlert,
+                setBackground,
+                setPassword
+            )
+    }
 
     const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
 
-        tasks[index] == 'save' ? name ? (accept(
+        tasks[index] == 'login' && user && password ? init(
+            [...tasks],
+            setIndex,
+            setTasks
+        ) : tasks[index] == 'save' ? name ? (accept(
             name,
             [...works],
             setAlert,
-            setBorder,
+            setBackground,
             setIndex,
             setWorks
         ), download(name, states), init(
@@ -99,11 +124,18 @@ export default function Home() {
             setTasks
         )) : relaunch(
             setAlert,
-            setBorder
-        ) : user && password && init(
-            [...tasks],
+            setBackground
+        ) : tasks[index] == 'content' ? type == content && accept(
+            file,
+            works,
+            setAlert,
+            setBackground,
             setIndex,
-            setTasks
+            setWorks
+        ) : reject(
+            setAlert,
+            setBackground,
+            setFile
         )
     }
 
@@ -138,9 +170,9 @@ export default function Home() {
             <small>copy</small>
             <Svg className='tools' draw={copy} />
         </span>, <span onClick={() => transition(
-            'data', [...tasks], setIndex, setTasks
+            'content', [...tasks], setIndex, setTasks
         )}>
-            <small>data</small>
+            <small>contents</small>
             <Svg className='tools' draw={database} />
         </span>, <span onClick={() => transition(
             'function', [...tasks], setIndex, setTasks
@@ -194,12 +226,19 @@ export default function Home() {
         )} />]
 
     const labels = [<span>
+        <label>Category</label>
         {
             tasks[index] == 'chart'
             && <Select category={tasks[index]} options={charts} />
         }{
             tasks[index] == 'chart'
             && <div className='preview'><Chart x={x} /></div>
+        }{
+            tasks[index] == 'content' && <Select
+                category={tasks[index] + ' ' + 'type'}
+                options={contents}
+                onChange={(event) => setType(event.target.value)}
+            />
         }{
             tasks[index] == 'function'
             && <Select category={tasks[index]} options={functions} />
@@ -221,10 +260,7 @@ export default function Home() {
                     === 'file'
                     ? undefined
                     : reader(outputs, 0, tasks[index])
-            } onChange={(event) => onChange(
-                event.target.value,
-                0
-            )}
+            } onChange={(event) => onChange(event, 0)}
         />
     </span>, <span>
         <label>{
@@ -238,9 +274,7 @@ export default function Home() {
                     === 'file'
                     ? undefined
                     : reader(outputs, 1, tasks[index])
-            } onChange={(event) =>
-                onChange(event.target.value, 1)
-            } />
+            } onChange={(event) => onChange(event, 1)} />
     </span>]
 
     return <div>
@@ -254,7 +288,7 @@ export default function Home() {
         />{
             tasks[index] && <Form
                 alert={alert}
-                border={border}
+                background={background}
                 className={tasks[index]}
                 icons={close}
                 labels={labels}

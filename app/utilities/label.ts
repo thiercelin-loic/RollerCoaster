@@ -4,7 +4,7 @@ export default function label(index: 0 | 1, task: string) {
             ? 'Username'
             : task == 'save'
                 ? 'Name'
-                : task == 'data'
+                : task == 'content'
                     ? 'File'
                     : task == 'function'
                         ? '1st parameter'

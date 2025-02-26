@@ -1,10 +1,10 @@
 export default function write(
     value: string,
     setAlert: (alert: string) => void,
-    setBorder: (border: string) => void,
+    setBackground: (border: string) => void,
     setValue: (value: string) => void
 ) {
     setAlert('')
-    setBorder('none')
+    setBackground('#4C516D')
     setValue(value)
 }
