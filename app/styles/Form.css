@@ -9,6 +9,7 @@ form {
     left: 50%;
     transform: translate(-50%, -50%);
     overflow: hidden;
+    animation: fade 0.5s both;
 }
 
 input.script {

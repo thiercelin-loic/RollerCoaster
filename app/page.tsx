@@ -226,7 +226,6 @@ export default function Home() {
         )} />]
 
     const labels = [<span>
-        <label>Category</label>
         {
             tasks[index] == 'chart'
             && <Select category={tasks[index]} options={charts} />
