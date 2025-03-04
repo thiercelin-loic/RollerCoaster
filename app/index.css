@@ -14,6 +14,8 @@
 @keyframes fade {
   from {
     opacity: 0;
+    display: none;
+    visibility: hidden;
   }
 
   to {
@@ -134,4 +136,15 @@ small {
 
 small:hover {
   cursor: pointer;
+}
+
+img {
+  position: fixed;
+  background: radial-gradient(darkgray, #4C516D);
+  width: 225;
+  padding: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: fade 1s 2.5s both reverse;
 }

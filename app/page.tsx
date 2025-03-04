@@ -296,5 +296,6 @@ export default function Home() {
                 onSubmit={onSubmit}
             />
         }
+        <img src='../favicon.ico'/>
     </div>
 }
