@@ -1,6 +1,6 @@
 export default function marker(
     inputs: React.Dispatch<React.SetStateAction<string>>[],
-    position: 0 | 1,
+    position: 0 | 1 | undefined,
     task: string
 ) {
     return position == 0

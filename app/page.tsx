@@ -27,12 +27,13 @@ import Select from './components/Select'
 import Svg from './components/Svg'
 import Table from './components/Table'
 
-import x from './constants/x.json'
+import array from './constants/array'
 import charts from './constants/charts.json'
 import contents from './constants/contents.json'
 import functions from './constants/functions.json'
 import scripts from './constants/scripts.json'
 import styles from './constants/styles.json'
+import x from './constants/x.json'
 
 import accept from './handlers/accept'
 import download from './handlers/download'
@@ -58,6 +59,7 @@ export default function Home() {
     const [alert, setAlert] = useState('')
     const [background, setBackground] = useState('')
     const [content, setContent] = useState('')
+    const [data, setData] = useState(array)
     const [file, setFile] = useState('')
     const [hidden, setHidden] = useState('hidden')
     const [index, setIndex] = useState(0)
@@ -77,7 +79,12 @@ export default function Home() {
         user, works
     })
 
-    const onChange = (event: ChangeEvent<HTMLInputElement>, position: 0 | 1) => {
+    const onChange = (
+        event: ChangeEvent<HTMLInputElement>,
+        position?: 0 | 1,
+        row?: number,
+        cell?: number,
+    ) => {
         event.target.value ? filter(event.target.value) ? write(
             event.target.value,
             setAlert,
@@ -104,6 +111,14 @@ export default function Home() {
                 setBackground,
                 setPassword
             )
+
+        const _data = data.map((r, i) => r.map((c, j) =>
+            i === row && j === cell
+                ? event.target.value
+                : c
+        ))
+
+        setData(_data)
     }
 
     const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -298,9 +313,19 @@ export default function Home() {
                 onSubmit={onSubmit}
             />
         }
-        <div className='overview'>
-            <Table />
-        </div>
+        <div className='overview'><Table body={
+            data.map((rows, row) => <tr key={row}>{
+                rows.map((cell, index) => <td key={index}><input
+                    className='table'
+                    type='text'
+                    value={cell}
+                    onChange={(event) => onChange(
+                        event, undefined, row, index
+                    )}
+                /></td>)}
+            </tr>
+            )
+        } /></div>
         <img src='../favicon.ico' />
     </div>
 }
