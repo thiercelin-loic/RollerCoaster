@@ -3,7 +3,6 @@
     "application/sql",
     "application/vnd.ms-excel",
     "application/xml",
-    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
     "text/csv",
     "text/plain"
 ]

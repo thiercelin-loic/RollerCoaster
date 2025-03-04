@@ -234,7 +234,7 @@ export default function Home() {
             && <div className='preview'><Chart x={x} /></div>
         }{
             tasks[index] == 'content' && <Select
-                category={tasks[index] + ' ' + 'type'}
+                category={tasks[index]}
                 options={contents}
                 onChange={(event) => setType(event.target.value)}
             />
