@@ -1,6 +1,6 @@
 'use client'
 
-import React, { ChangeEvent, ChangeEventHandler, useState } from 'react'
+import React, { ChangeEvent, useState } from 'react'
 
 import account from './icons/account.json'
 import back from './icons/back.json'
@@ -25,6 +25,7 @@ import Form from './components/Form'
 import Header from './components/Header'
 import Select from './components/Select'
 import Svg from './components/Svg'
+import Table from './components/Table'
 
 import x from './constants/x.json'
 import charts from './constants/charts.json'
@@ -51,6 +52,7 @@ import transition from './utilities/transition'
 import './styles/Chart.css'
 import './styles/Form.css'
 import './styles/Header.css'
+import './styles/Table.css'
 
 export default function Home() {
     const [alert, setAlert] = useState('')
@@ -296,6 +298,9 @@ export default function Home() {
                 onSubmit={onSubmit}
             />
         }
-        <img src='../favicon.ico'/>
+        <div className='overview'>
+            <Table />
+        </div>
+        <img src='../favicon.ico' />
     </div>
 }
