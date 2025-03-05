@@ -85,6 +85,12 @@ export default function Home() {
         row?: number,
         cell?: number,
     ) => {
+        const _data = data.map((r, i) => r.map((c, j) =>
+            i === row && j === cell
+                ? event.target.value
+                : c
+        ))
+
         event.target.value ? filter(event.target.value) ? write(
             event.target.value,
             setAlert,
@@ -111,12 +117,6 @@ export default function Home() {
                 setBackground,
                 setPassword
             )
-
-        const _data = data.map((r, i) => r.map((c, j) =>
-            i === row && j === cell
-                ? event.target.value
-                : c
-        ))
 
         setData(_data)
     }
@@ -327,5 +327,6 @@ export default function Home() {
             )
         } /></div>
         <img src='../favicon.ico' />
+        <p className='splash'>BI 1.0.0 Developement Edition</p>
     </div>
 }

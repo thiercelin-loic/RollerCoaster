@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./index.css";
 
 export const metadata: Metadata = {
-  title: "RollerCoaster",
+  title: "BI - RollerCoaster",
   description: "Business Analysis Tools",
 };
 

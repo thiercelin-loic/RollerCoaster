@@ -39,25 +39,26 @@
 }
 
 body {
-  background: linear-gradient(45deg, #4C516D, #a9a9a9 50%);
+  background: linear-gradient(45deg, #4C516D, #a9a9a9 750);
   height: 100vh;
   overflow: hidden;
 }
 
 div.overview {
-  height: 570;
-  margin: 1%;
-  padding: 1%;
-  background: linear-gradient(-45deg, lightgray, transparent);
+  height: 575;
+  margin: 10;
+  padding: 10 25;
+  background: radial-gradient(white, lightgray);
   border: solid lightgray 1;
-  border-radius: 10;
+  border-radius: 5;
   overflow: scroll;
+  box-shadow: 10 10 10 gray;
 }
 
 svg {
   width: 25;
   padding: 2.25 10;
-  border-radius: 10;
+  border-radius: 5;
   display: inline-flex;
   cursor: pointer;
 }
@@ -105,6 +106,18 @@ option {
   width: 425;
   margin: 0 25;
   color: orangered;
+}
+
+p {
+  color: #4C516D;
+}
+
+p.splash {
+  top: 75%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  animation: fade 1s 2.5s both reverse;
 }
 
 select {
@@ -157,4 +170,14 @@ img {
   left: 50%;
   transform: translate(-50%, -50%);
   animation: fade 1s 2.5s both reverse;
+}
+
+::-webkit-scrollbar {
+  background: darkgray;
+  width: 15;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(45deg, lightgray, white);
+  border-radius: 10;
 }
